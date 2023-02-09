@@ -1,0 +1,328 @@
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+html {
+  background-color: #fff;
+}
+
+html::-webkit-scrollbar-track
+{
+	border: 1px solid rgb(126, 125, 125);
+	background-color: #F5F5F5;
+}
+
+html::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+html::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+html::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(122,153,217)),
+									   color-stop(0.72, rgb(73,125,189)),
+									   color-stop(0.86, rgb(28,58,148)));
+}
+
+header {
+  color: #000;
+  background-color: #fff;
+  border-bottom: solid 1px#808080;
+}
+
+a, h1, h2, h3, h4 ,h5, h6, p {
+  font-family: 'Montserrat', sans-serif!important;
+  box-sizing:border-box;
+}
+
+header {
+  top: 0px;
+  position: fixed;
+  width: 100vw;
+  height: 80px;
+  z-index: 2;
+ /*  background-color: #D13639; */
+}
+
+@media (max-width: 758px) {
+  .pc {
+    display: none;
+  }
+
+  .modal, .modal-2, .mobile {
+    display: block;
+  }
+
+  header ul.mobile li {
+    float: left;
+    margin: 13px;
+  }
+  
+  header > ul.mobile > li:nth-child(1) {
+    z-index: 7;
+  }
+  
+  header > ul.mobile > li img{
+    width: 60px;
+  }
+  
+  header > ul.mobile > li:nth-child(1) button{
+    padding-right: 19px;
+    border: none;
+    background-color:transparent;
+    color: none;
+  }
+  
+  header > ul.mobile > li:nth-last-child(1){
+    float: right;
+    margin-top: 33px;
+  
+  }
+  
+  header > ul.mobile > li:nth-last-child(2){
+    float: right;
+    margin-top: 15px;
+    margin-right: 15px;
+  }
+
+  
+  body {
+    background-color: #000;
+  }
+}
+
+@media (min-width: 758px) {
+
+  .modal, .modal-2, .mobile {
+    display: none;
+  }
+
+  header .pc {
+    display: block;
+    color: #000;
+    width: 100%;;
+  }
+
+  header ul.pc > li {
+    float: left;
+    padding: 13px;
+    text-align: left;
+    border-radius: 5px;
+  }
+
+  .header >ul > li::before{
+  content: '';
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  width: 110px;
+  height: 100px;
+  margin-left: -15px;
+}
+
+  header ul.pc > li:nth-child(1) {
+    margin-left: 60px;
+  }
+  
+  header > ul.pc > li img{
+    width: 100px;
+  }
+
+  header > ul.pc > li:nth-child(2) {
+    background-color: #7777fd;
+    color: #fff;
+    border: 2px solid #7777fd;
+  }
+
+  header > ul.pc > li:nth-child(2) .title i{
+    color: #fff;
+  }
+  
+  header > ul.pc > li .item {
+    color: #000;
+  }
+  header ul.pc > li:nth-child(n + 2) {
+    margin-top: 22px;
+    margin-left: 15px;
+    font-size: 15px;
+  }
+
+  header ul.pc > li:nth-child(3) {
+    margin-top: 10px;
+  }
+  header > ul.pc > li:nth-child(1) button{
+    padding-right: 19px;
+    border: none;
+    background-color:transparent;
+  }
+  
+  header > ul.pc > li:nth-last-child(1){
+    float: right;
+    color: #7777fd;
+    position: relative;
+    cursor: pointer;
+  }
+
+    header > ul.pc > li h2{
+    float: left;
+  }
+
+  header > ul.pc > li .title i{
+    color: #000;
+    border-radius: 10px;
+    float: right;
+    margin-left: 10px
+  }
+
+  header > ul.pc > li:nth-last-child(2){
+    float: right;
+    margin-right: 50px;
+    margin-top: 17px;
+  }
+    
+  header > ul.pc > li:nth-last-child(2) button{
+    background-color: #7777fd;
+    color: #fff;
+    padding: 13px 20px;
+    border-radius: 5px;
+    border: none;
+    margin-top: -10px;
+    font-size: 17px;
+    cursor:pointer;
+    position: relative;
+  }
+
+  header >ul.pc >li:nth-last-child(2) button:hover{
+    background-color:#0202cf;
+  }
+
+  header > ul.pc > li:nth-last-child(1) a:visited{
+    color: #7777fd;
+  }
+
+  header > ul.pc > li:nth-last-child(1):hover .title a{
+    text-decoration: underline;
+  }
+
+  header > ul.pc > li .item {
+    position: absolute;
+    background-color: #f5f5f5;
+    width: 150px;
+    border-top: #D13639 3px solid;
+    display: none;
+    margin-top: 70px;
+  }
+
+  header > ul.pc > li .item a {
+    font-size: 14px;
+  }
+
+  header > ul.pc > li .item li {
+    padding: 10px;
+  }
+
+  header > ul.pc > li:nth-child(n+2):nth-child(-n+4):not(:nth-child(3)):hover{
+    background-color:#fff;
+    color: #7777fd;
+  }
+
+  header > ul.pc > li:nth-child(n+2):nth-child(-n+4):not(:nth-child(3)):hover i{
+    color: #7777fd;
+  }
+
+  header > ul.pc > li:hover .item {
+    display: block;
+  }
+
+  *{
+  box-sizing: border-box;
+  }
+  /* header search */
+  .search-box{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  border-color: #000;
+  }
+  .input-search{
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 25px;
+    transition: all .5s ease-in-out;
+    background-color: #7777fd;
+    padding-right: 40px;
+    color:#000;
+  }
+  .input-search::placeholder{
+    color:rgba(109, 108, 108, 0.5);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+  }
+  .btn-search{
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    background-color:transparent;
+    pointer-events: painted;
+  }
+
+  .btn-search {
+    color: #fff;
+  }
+  .btn-search:focus ~ .input-search{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid #7777fd;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+
+  .btn-search:focus i{
+    color: #7777fd;
+  }
+
+  .input-search:focus{
+    width: 300px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid #7777fd;
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+
+ .input-search:focus ~ .btn-search{
+    color: #7777fd!important;
+    width: 100px;
+  } 
+
+  .input-search:focus ~ button i{
+    color: #7777fd;
+  }
+}
