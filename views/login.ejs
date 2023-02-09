@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CONNECTWITH</title>
+  <%- include("./elements/head");%>
+  <link rel="stylesheet" href="css/elements/header.css">
+  <link rel="stylesheet" href="css/login.css">
+  <script defer src = "js/main.js"></script>
+</head>
+<body>
+  <div class="main">
+    <div class="inner">
+      <div class="box">
+        <form action = "/admin/authentication" method="post">
+          <span class="text-center">login</span>
+          <span class="text-center error_msg"></span>
+        <div class="input-container">
+          <input type="text" required="" name = "name"/>
+          <label>USERNAME</label>		
+        </div>
+        <div class="input-container">		
+          <input type="mail" required="" name = "password"/>
+          <label>PASSWORD</label>
+        </div>
+          <input type= "submit" class = "btn" value = "SUBMIT" >
+      </form>	
+      </div>
+    </div>
+  </div>
+</body>
+</html>

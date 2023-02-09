@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CONNECTWITH</title>
+  <%- include("./elements/head");%>
+  <link rel="stylesheet" href="css/elements/header.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script defer src = "js/main.js"></script>
+</head>
+<body>
+  <%- include("./elements/header");%>
+  <div class="main">
+    <div class="swiper" id = "pc">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="top">
+            <div class="blur">
+              <div class="text">
+                <div class="first">
+                  <p>Hello World !</p>
+                </div>
+                <div class="second">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit necessitatibus ea, esse numquam maiores accusamus fuga exercitationem similique a cumque, iusto libero nesciunt laboriosam obcaecati pariatur soluta in alias veniam? </p>
+                </div>
+                <!-- <div class="bottom">
+                  <button>Join for Free</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/slider/logo.png" alt="?" />
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/slider/logo2.png" alt="?" />
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div> -->
+    </div>
+    <div class="section">
+      <div class="inner">
+        <div class="guideline">
+          <div class="title">
+            <h2>Popular Categories</h2>
+            <a href="">View all catecories<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="categories">
+            <nav class="slidemenu">
+  
+              <!-- Item 1 -->
+              <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
+              <label for="slide-item-1" class = "slide-item-1"><button class = "icon"><i class="fa-solid fa-globe"></i></i></button><span>All</span></label>
+              
+              <!-- Item 2 -->
+              <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle"/>
+              <label for="slide-item-2" class = "slide-item-2"><button class = "icon"><i class="fa-brands fa-java"></i></button><span>Java</span></label>
+              
+              <!-- Item 3 -->
+              <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
+              <label for="slide-item-3" class = "slide-item-3"><button class = "icon"><i class="fa-solid fa-c"></i></button><span>C</span></label>
+              
+              <!-- Item 4 -->
+              <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
+              <label for="slide-item-4" class = "slide-item-4"><button class = "icon"><i class="fa-brands fa-js"></i></button><span>JS</span></label>
+              <input type="radio" name="slideItem" id="slide-item-5" class="slide-toggle"/>
+              <label for="slide-item-5" class = "slide-item-5"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              <input type="radio" name="slideItem" id="slide-item-6" class="slide-toggle"/>
+              <label for="slide-item-6" class = "slide-item-6"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              <input type="radio" name="slideItem" id="slide-item-7" class="slide-toggle"/>
+              <label for="slide-item-7" class = "slide-item-7"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              <input type="radio" name="slideItem" id="slide-item-8" class="slide-toggle"/>
+              <label for="slide-item-8" class = "slide-item-8"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              <input type="radio" name="slideItem" id="slide-item-9" class="slide-toggle"/>
+              <label for="slide-item-9" class = "slide-item-9"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              <input type="radio" name="slideItem" id="slide-item-10" class="slide-toggle"/>
+              <label for="slide-item-10" class = "slide-item-10"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
+              
+              <div class="clear"></div>
+              
+              <!-- Bar -->
+              <div class="slider">
+                <div class="bar"></div>
+              </div>
+              
+            </nav>
+          </div>
+          <div class="items"class="scrollbar" id="style-7" >
+            <ul>
+              <li class = >
+                <div class="topic">
+                  <a href=></a>
+                </div>
+                <div class="explanation">
+                  <p></p>
+                </div>
+                <div class="tags">
+                  <p></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="create">
+          <div class="title">
+            <h2>Guideline</h2>
+          </div>
+          <div class="steps">
+            <div class="wrapper">
+              <div class="toggle_radio">
+                <input type="radio" class="toggle_option" id="first_toggle" name="toggle_option">
+                <input type="radio" checked class="toggle_option" id="second_toggle" name="toggle_option">
+                <label for="first_toggle">
+                    <p class="day">Project without Github repo</p>
+                  <span class="day-week"><i class="fa-brands fa-github"></i></span>
+                </label>
+                <label for="second_toggle">
+                    <p class="day">Project with Github repo </p>
+                </label>
+                <div class="toggle_option_slider">
+                </div>
+              </div>
+            </div>
+            <div class="step-text">
+              <div class="with-github">
+              </div>
+            </div>
+            <div class="without-github">
+              <p>Sign in to create board to opensource project!</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

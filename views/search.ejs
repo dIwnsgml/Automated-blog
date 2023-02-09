@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("./elements/head");%>
+  <link rel="stylesheet" href="css/elements/header.css">
+  <link rel="stylesheet" href="css/search.css">
+  <script defer src = "js/search.js"></script>
+  <title>Search result</title>
+</head>
+<body>
+  <%- include("./elements/header");%>
+  <div class="main">
+    <div class="inner">
+      <div class="options">
+        <div class="title">
+          <h3>Advanced search Options</h3>
+        </div>
+        <div class="option-wrapper">
+          <div class="language">
+            <p>Language: </p>
+            <input list="Country" name="Country"/>
+            <datalist id="Country">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+              <option value=" HTML">
+            </datalist>
+          </div>
+          <div class="created-date">
+            <p>Created date</p>
+            <input type="date">
+          </div>
+          <div class="update-date">
+            <p>Last update</p>
+            <input type="date">
+          </div>
+          <div class="sort-order">
+            <div class="title"><p>Sort order</p></div>
+            <div class="wrapper">
+              <input type="radio" name="select" id="option-1" checked>
+              <input type="radio" name="select" id="option-2">
+                <label for="option-1" class="option option-1">
+                  <div class="dot"></div>
+                   <span>Student</span>
+                   </label>
+                <label for="option-2" class="option option-2">
+                  <div class="dot"></div>
+                   <span>Teacher</span>
+                </label>
+             </div>
+          </div>
+          <div class="search-box">
+            <form action="/search" method="get">
+              <button class="btn-search"><i class="fas fa-search"></i></button>
+              <input type="text" class="input-search" placeholder="Type to Search..." name = "q">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="items">
+        <ul>
+          <% for (var i = 0; i < githubapi.items.length; i++){%>
+            <li class = <%= githubapi.items[i].language%>>
+              <div class="topic">
+                <a href=<%=githubapi.items[i].html_url%>><%= githubapi.items[i].name%></a>
+              </div>
+              <div class="explanation">
+                <p><%= githubapi.items[i].description%></p>
+              </div>
+              <div class="tags">
+                <p><%= githubapi.items[i].topics%></p>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

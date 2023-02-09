@@ -1,0 +1,36 @@
+{
+  "name": "automated-blog",
+  "version": "1.0.0",
+  "description": "chat gpt based blog that automatcally generate blog posts",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dIwnsgml/Automated-blog.git"
+  },
+  "author": "dIwnsgml",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dIwnsgml/Automated-blog/issues"
+  },
+  "homepage": "https://github.com/dIwnsgml/Automated-blog#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "helmet": "^6.0.0",
+    "instagram-web-api": "^2.2.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.20",
+    "openai": "^3.1.0",
+    "socket.io": "^4.5.4"
+  }
+}
