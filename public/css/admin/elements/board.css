@@ -1,0 +1,19 @@
+.board {
+  position: absolute;
+  background-color: red;
+  left: 300px;
+}
+
+html {
+  height: 3000px !important;
+}
+
+.board > * {
+  margin: 0px 100px 0px 60px;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+}
+
+.board > * > * {
+  margin: 30px;
+}

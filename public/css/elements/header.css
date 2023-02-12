@@ -73,28 +73,28 @@ header {
     margin: 13px;
   }
   
-  header > ul.mobile > li:nth-child(1) {
+  header > .inner > ul.mobile > li:nth-child(1) {
     z-index: 7;
   }
   
-  header > ul.mobile > li img{
+  header > .inner > ul.mobile > li img{
     width: 60px;
   }
   
-  header > ul.mobile > li:nth-child(1) button{
+  header > .inner > ul.mobile > li:nth-child(1) button{
     padding-right: 19px;
     border: none;
     background-color:transparent;
     color: none;
   }
   
-  header > ul.mobile > li:nth-last-child(1){
+  header > .inner > ul.mobile > li:nth-last-child(1){
     float: right;
     margin-top: 33px;
   
   }
   
-  header > ul.mobile > li:nth-last-child(2){
+  header > .inner > ul.mobile > li:nth-last-child(2){
     float: right;
     margin-top: 15px;
     margin-right: 15px;
@@ -118,6 +118,12 @@ header {
     width: 100%;;
   }
 
+  header .inner {
+    width: 80vw;
+    left: 10vw;
+    position: relative;
+  }
+
   header ul.pc > li {
     float: left;
     padding: 13px;
@@ -125,7 +131,7 @@ header {
     border-radius: 5px;
   }
 
-  .header >ul > li::before{
+  header > .inner > ul > li:nth-child(n+2):nth-child(-n+5)::before{
   content: '';
   position: absolute;
   top: 50px;
@@ -137,23 +143,15 @@ header {
 
   header ul.pc > li:nth-child(1) {
     margin-left: 60px;
-  }
-  
-  header > ul.pc > li img{
-    width: 100px;
+    margin-top: 0px;
   }
 
-  header > ul.pc > li:nth-child(2) {
-    background-color: #7777fd;
-    color: #fff;
-    border: 2px solid #7777fd;
-  }
-
-  header > ul.pc > li:nth-child(2) .title i{
-    color: #fff;
+  header ul.pc > li:nth-child(1) img{
+    padding: 0px 30px 30px 30px;
+    height: 80px;
   }
   
-  header > ul.pc > li .item {
+  header > .inner > ul.pc > li .item {
     color: #000;
   }
   header ul.pc > li:nth-child(n + 2) {
@@ -162,64 +160,44 @@ header {
     font-size: 15px;
   }
 
-  header ul.pc > li:nth-child(3) {
-    margin-top: 10px;
+  header > .inner > ul.pc > li:nth-child(2) {
   }
-  header > ul.pc > li:nth-child(1) button{
+  header > .inner > ul.pc > li:nth-child(1) button{
     padding-right: 19px;
     border: none;
     background-color:transparent;
   }
   
-  header > ul.pc > li:nth-last-child(1){
+  header > .inner > ul.pc > li:nth-last-child(1){
     float: right;
     color: #7777fd;
     position: relative;
     cursor: pointer;
   }
 
-    header > ul.pc > li h2{
+    header > .inner > ul.pc > li h2{
     float: left;
   }
 
-  header > ul.pc > li .title i{
+  header > .inner > ul.pc > li .title i{
     color: #000;
     border-radius: 10px;
     float: right;
     margin-left: 10px
   }
 
-  header > ul.pc > li:nth-last-child(2){
-    float: right;
-    margin-right: 50px;
-    margin-top: 17px;
+  header > .inner > ul.pc > li:nth-last-child(2){
+    margin-top: 10px;
   }
-    
-  header > ul.pc > li:nth-last-child(2) button{
-    background-color: #7777fd;
-    color: #fff;
-    padding: 13px 20px;
-    border-radius: 5px;
-    border: none;
-    margin-top: -10px;
-    font-size: 17px;
-    cursor:pointer;
-    position: relative;
-  }
-
-  header >ul.pc >li:nth-last-child(2) button:hover{
-    background-color:#0202cf;
-  }
-
-  header > ul.pc > li:nth-last-child(1) a:visited{
+  header > .inner > ul.pc > li:nth-last-child(1) a:visited{
     color: #7777fd;
   }
 
-  header > ul.pc > li:nth-last-child(1):hover .title a{
+  header > .inner > ul.pc > li:nth-last-child(1):hover .title a{
     text-decoration: underline;
   }
 
-  header > ul.pc > li .item {
+  header > .inner > ul.pc > li .item {
     position: absolute;
     background-color: #f5f5f5;
     width: 150px;
@@ -228,24 +206,24 @@ header {
     margin-top: 70px;
   }
 
-  header > ul.pc > li .item a {
+  header > .inner > ul.pc > li .item a {
     font-size: 14px;
   }
 
-  header > ul.pc > li .item li {
+  header > .inner > ul.pc > li .item li {
     padding: 10px;
   }
 
-  header > ul.pc > li:nth-child(n+2):nth-child(-n+4):not(:nth-child(3)):hover{
+  header > .inner > ul.pc > li:nth-child(n+2):nth-child(-n+5):not(:nth-child(4)):hover{
     background-color:#fff;
     color: #7777fd;
   }
 
-  header > ul.pc > li:nth-child(n+2):nth-child(-n+4):not(:nth-child(3)):hover i{
+  header > .inner > ul.pc > li:nth-child(n+2):nth-child(-n+5):not(:nth-child(4)):hover i{
     color: #7777fd;
   }
 
-  header > ul.pc > li:hover .item {
+  header > .inner > ul.pc > li:hover .item {
     display: block;
   }
 
