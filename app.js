@@ -49,7 +49,7 @@ app.use(helmet.contentSecurityPolicy(cspOptions))  */
 
 const mainRouter = require("./Router/main");
 const searchRouter = require("./Router/search");
-const adminRouter = require("./Router/admin");
+const adminRouter = require("./Router/admin/main");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
