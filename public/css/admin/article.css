@@ -1,0 +1,6 @@
+@import url("elements/board.css");
+
+.main {
+  position: absolute;
+  left: 800px;
+}
