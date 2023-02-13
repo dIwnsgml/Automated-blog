@@ -3,7 +3,7 @@ const app = express();
 let Router = express.Router();
 const info = require("../config/info.json");
 const { Configuration, OpenAIApi } = require("openai");
-
+const connection = require("../model/db");
 /* (async () => {
   const configuration = new Configuration({
     apiKey: info.OpenAiApi,

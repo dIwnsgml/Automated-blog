@@ -5,12 +5,12 @@ const info = require("../../config/info.json");
 const app = express();
 const path = require("path");
 Router.get('/', (req, res) => {
-  /* if(req.session.loggedin){
+  if(req.session.loggedin){
     res.render("admin")
   } else {
     res.render("login")
   }
-  console.log(req.session.loggedin) */
+  console.log(req.session.loggedin)
   res.render('admin/main');
 })
 
