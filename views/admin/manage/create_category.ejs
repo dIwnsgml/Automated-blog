@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CONNECTWITH</title>
+  <%- include("../../elements/head");%>
+  <link rel="stylesheet" href="../../../css/elements/header.css">
+  <link rel="stylesheet" href="../../../css/admin/create_category.css">
+</head>
+<body>
+  <%- include("../elements/board.ejs");%>
+  <div class="main">
+    <div class="box">
+      <form action = "/account/authentication" method="post">
+        <span class="text-center">login</span>
+        <span class="text-center error_msg"></span>
+      <div class="input-container">
+        <input type="text" required="" name = "name"/>
+        <label>Topic</label>		
+      </div>
+      <div class="input-container">		
+        <input type="mail" required="" name = "password"/>
+        <label>PASSWORD</label>
+      </div>
+        <input type= "submit" class = "btn" value = "SUBMIT" >
+    </form>	
+    </div>
+  </div>
+</body>
+</html>

@@ -3,7 +3,7 @@ const Router = express.Router();
 const connection = require('../../model/db');
 const info = require("../../config/info.json");
 const app = express();
-
+const path = require("path");
 Router.get('/', (req, res) => {
   /* if(req.session.loggedin){
     res.render("admin")
@@ -14,10 +14,8 @@ Router.get('/', (req, res) => {
   res.render('admin/main');
 })
 
-
 const manageRouter = require("./manage");
-
-app.use('/manage/article', manageRouter);
+Router.use('/manage', manageRouter);
 
 Router.post('/authentication', (req, res) => {
   console.log(req.body.name, req.body.password, info.users.Admin)
