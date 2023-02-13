@@ -15,36 +15,13 @@
       <button id = "create_category">Generate new category using chat GPT</button>
     </div>
     <ul>
-      <li>
-        <a href="">
-          <h5></h5>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <h5>title</h5>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <h5>title</h5>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <h5>title</h5>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <h5>title</h5>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <h5>title</h5>
-        </a>
-      </li>
+      <% for(let i = 0; typeof categories[i] != 'undefined'; i++){%>
+        <li>
+          <a href="">
+            <h5><%= categories[i].name%></h5>
+          </a>
+        </li>
+      <%}%>
     </ul>
   </div>
 </body>
