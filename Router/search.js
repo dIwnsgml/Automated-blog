@@ -19,11 +19,11 @@ octokit.paginate(octokit.rest.search.repos, {
 
 
 
-  Router.get('/', function (req, res, next) {
+  /* Router.get('/', function (req, res, next) {
     res.render("search", {
       githubapi: githubapi
     })
-  });
+  }); */
   /* req.session.error_msg = "";
   
   if (req.session.loggedin) {

@@ -61,6 +61,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(secret.secretId));
 app.use(express.static(path.join(__dirname, '/public')));
+app.disable('etag');
 
 app.use(session({
   secret: secret.secretId,

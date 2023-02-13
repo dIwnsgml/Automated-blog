@@ -4,6 +4,9 @@ const connection = require('../../model/db');
 const info = require("../../config/info.json")
 const { Configuration, OpenAIApi } = require("openai");
 
+/* connection.query("SELECT * FROM mongodb" ,(err, rows) => {
+  console.log(rows[0].text)
+}) */
 Router.get('/article', (req, res) => {
   /* if(req.session.loggedin){
     res.render("admin")
@@ -62,12 +65,12 @@ Router.post('/category/create', (req, res) => {
       try {
         let new_category = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `think about what one concept should be thaought in programming and devops blog(only say the name of the language without explanation and exept ${categories})`,
+          prompt: `think about what one concept should be thaought in programming and devops blog that are not in this list (${categories})(only say the name of the language without explanation)`,
           max_tokens: 15,
           temperature: 0,
         });
-
-        new_category = new_category.data.choices[0].text.replace(/[^a-z A-Z 0-9]/gi, '');
+        new_category = new_category.data.choices[0].text.replace(' ', '_');
+        new_category = new_category.replace(/[^a-z A-Z 0-9 _]/gi, '');
 
         /* planning blog post part */
         let new_topics = await openai.createCompletion({
@@ -84,16 +87,25 @@ Router.post('/category/create', (req, res) => {
 
         connection.query('INSERT INTO category SET ?', {name: new_category})
         console.log(new_category)
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), status varchar(30) default 'no')`)
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(65000), status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
+          //write article
+          let new_text = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `write article to this topic using HTML: ${new_topics_arr[index]}  (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form)`,
+            max_tokens: 2000,
+            temperature: 0,
+          });
           const post_info = {
             title: new_topics_arr[index].split(';')[0],
-            contents: new_topics_arr[index].split(';')[1]
+            contents: new_topics_arr[index].split(';')[1],
+            text: new_text.data.choices[0].text,
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);
           index += 1;
         }
+
         console.log(new_category, new_topics, new_topics_arr[0]);
       } catch (error) {
         if (error.response) {
