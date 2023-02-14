@@ -278,6 +278,7 @@ a:visited {
   }
 
   .guideline .items > ul > li {
+    display: block;
     width: 15.5vw;
     height: 400px;
     background-color: whitesmoke;

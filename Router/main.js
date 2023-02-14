@@ -6,9 +6,6 @@ const { Configuration, OpenAIApi } = require("openai");
 const connection = require("../model/db");
 const async = require("async");
 
-connection.query("SELECT * FROM scala", (err, rows) => {
-  console.log(rows[0].title);
-});
 var article = [];
 connection.query("SHOW TABLES", (err, rows) => {
   for(let i = 0; typeof rows[i] != 'undefined'; i++){
@@ -29,7 +26,6 @@ connection.query("SHOW TABLES", (err, rows) => {
 })
 
 Router.get('/', (req, res) => {
-  console.log(article[2][0].title)
   res.render('index', {article:article});
 })
 

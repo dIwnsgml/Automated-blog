@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CONNECTWITH</title>
+  <%- include("./elements/head");%>
+  <link rel="stylesheet" href="../css/elements/header.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <%- include("./elements/header");%>
+  <div class="main">
+    <div class="section">
+      <div class="inner">
+        <div class="guideline">
+          <div class="title">
+            <h2>Popular Categories</h2>
+            <a href="">View all catecories<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="items"class="scrollbar" id="style-7" >
+            <ul>
+              <% for(var i = 0; typeof article[i] != "undefined"; i++){%>
+              <li class = >
+                <a href="">
+                  <div class="topic">
+                    <%= article[i].title%>
+                  </div>
+                  <div class="explanation">
+                    <p></p>
+                  </div>
+                  <div class="tags">
+                    <p></p>
+                  </div>
+                </a>
+              </li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
