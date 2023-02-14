@@ -50,6 +50,7 @@ app.use(helmet.contentSecurityPolicy(cspOptions))  */
 const mainRouter = require("./Router/main");
 const searchRouter = require("./Router/search");
 const adminRouter = require("./Router/admin/main");
+const categoryRouter=  require("./Router/category");
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -82,6 +83,7 @@ app.use(session({
 app.use('/', mainRouter);
 app.use("/search", searchRouter);
 app.use("/admin", adminRouter);
+app.use("/category", categoryRouter);
 
 app.get('*',function(req,res){
   res.redirect('/');
