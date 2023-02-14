@@ -29,7 +29,7 @@ connection.query("SHOW TABLES", (err, rows) => {
 })
 
 Router.get('/', (req, res) => {
-  console.log(article[1][0].text)
+  console.log(article[2][0].title)
   res.render('index', {article:article});
 })
 

@@ -90,17 +90,21 @@
           </div>
           <div class="items"class="scrollbar" id="style-7" >
             <ul>
+              <% for(var i = 1; typeof article[i] != "undefined"; i++){%>
+                <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
               <li class = >
                 <div class="topic">
                   <a href=></a>
                 </div>
                 <div class="explanation">
-                  <p><%= article%></p>
+                  <p><%= article[i][j].title%></p>
                 </div>
                 <div class="tags">
                   <p></p>
                 </div>
               </li>
+              <%}%>
+              <%}%>
             </ul>
           </div>
         </div>
