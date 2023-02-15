@@ -6,9 +6,6 @@ const { Configuration, OpenAIApi } = require("openai");
 const connection = require("../model/db");
 const async = require("async");
 
-connection.query("SELECT * FROM c", (err, rows) => {
-  console.log(rows.length)
-})
 Router.get('/:tagId', (req, res) => {
   console.log(req.params.tagId)
   var article = [];

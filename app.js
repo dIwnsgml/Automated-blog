@@ -51,6 +51,7 @@ const mainRouter = require("./Router/main");
 const searchRouter = require("./Router/search");
 const adminRouter = require("./Router/admin/main");
 const categoryRouter=  require("./Router/category");
+const articleRouter = require('./Router/article');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -84,6 +85,7 @@ app.use('/', mainRouter);
 app.use("/search", searchRouter);
 app.use("/admin", adminRouter);
 app.use("/category", categoryRouter);
+app.use("/article", articleRouter);
 
 app.get('*',function(req,res){
   res.redirect('/');
