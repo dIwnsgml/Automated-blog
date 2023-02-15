@@ -17,21 +17,23 @@ connection.query("SHOW TABLES", (err, rows) => {
               article[i] = []
             }
             article[i][j] = rows[j];
+            console.log(article.length)
           }
           callback(null, article)
         })
       }, 
     ])
   }
-})
-
-Router.get('/', (req, res) => {
-  res.render('index', {article:article});
+  Router.get('/', (req, res) => {
+    console.log(article.length)
+    res.render('index', {article:article});
+  })
 })
 
 
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
+  console.log(article.length)
 });
 
 Router.get('/sitemap.xmal', (req, res) => {

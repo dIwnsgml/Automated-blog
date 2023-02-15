@@ -75,7 +75,7 @@ Router.post('/category/create', (req, res) => {
         /* planning blog post part */
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `try to plan many blog posts as possible for ${new_category} (only titles and list-up the contents) rule: add ;% at the start of the title`,
+          prompt: `try to plan many blog posts as many as possible for ${new_category}. For topic, anything you want that is related to this language such as dev environment setting. create 23 topics or more. Try to divide one post into many posts instead of putting many contents in one article. ex) instead of putting variable, data types, operators, control flow, loops, functions in one post, put into individual post(print only titles and list-up the contents) rule: add ;% at the start of the title and divide the area of title and contents by  adding <---->`,
           max_tokens: 1000,
           temperature: 0,
         });
@@ -93,8 +93,8 @@ Router.post('/category/create', (req, res) => {
           //write article
           let new_text = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `write article to this topic using HTML: ${new_topics_arr[index]}  (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form)`,
-            max_tokens: 2000,
+            prompt: `write article to this topic using HTML: Variables in ${new_topics_arr}  (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form. Try to write more than 2000 words)`,
+            max_tokens: 3000,
             temperature: 0,
           });
           const post_info = {
