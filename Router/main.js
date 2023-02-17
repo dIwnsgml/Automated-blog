@@ -3,11 +3,27 @@ const app = express();
 let Router = express.Router();
 const info = require("../config/info.json");
 const { Configuration, OpenAIApi } = require("openai");
-const connection = require("../model/db");
-const async = require("async");
+const pool = require('../model/pool');
 
-var article = [];
-connection.query("SHOW TABLES", (err, rows) => {
+Router.get("/", async (req, res) => {
+  const connection = await (await pool).getConnection()
+  const tables = await connection.query("SHOW TABLES");
+  let articles = [];
+  for(let i = 0; i < tables.length; i++){
+    articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
+    for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
+      articles[i][j].path = ('article/'+tables[i].Tables_in_automated_blog+'/'+articles[i][j].title).replaceAll(' ', "%20");
+    }
+    /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
+      for(let j = 0; typeof rows[j] != 'undefined'; j++){
+        articles[i][j] = rows[j];
+        articles[i][j].path = 'article'+''
+      }
+    }); */
+  }
+  res.render('index', {article: articles})
+})
+/* connection.query("SHOW TABLES", (err, rows) => {
   for(let i = 0; typeof rows[i] != 'undefined'; i++){
     async.waterfall([
       function(callback){
@@ -22,7 +38,6 @@ connection.query("SHOW TABLES", (err, rows) => {
             article[i][j].path = article[i][j].path.replace("/-- ", "/");
             article[i][j].path = article[i][j].path.replaceAll(" ", "%20");
             console.log(article[i][j].path)
-            /* console.log(article.length) */
           }
           callback(null, article)
         })
@@ -34,11 +49,10 @@ connection.query("SHOW TABLES", (err, rows) => {
     res.render('index', {article:article});
   })
 })
-
+ */
 
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
-  console.log(article.length)
 });
 
 Router.get('/sitemap.xmal', (req, res) => {
