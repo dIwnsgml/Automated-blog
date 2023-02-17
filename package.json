@@ -32,6 +32,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
     "openai": "^3.1.0",
+    "promise-mysql": "^5.2.0",
     "socket.io": "^4.5.4"
   }
 }

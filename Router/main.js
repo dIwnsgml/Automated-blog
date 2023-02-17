@@ -17,7 +17,7 @@ connection.query("SHOW TABLES", (err, rows) => {
               article[i] = []
             }
             article[i][j] = rows[j];
-            console.log(article.length)
+            /* console.log(article.length) */
           }
           callback(null, article)
         })
