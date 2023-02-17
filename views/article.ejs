@@ -6,12 +6,17 @@
   <link rel="stylesheet" href="../../css/elements/header.css">
   <link rel="stylesheet" href="../../css/article.css">
   <script defer src = "../../js/header.js"></script>
+  <script defer src = "../../js/article.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <%- include("./elements/header");%>
   <div class="main">
     <div class="inner">
       <div class="article">
+        <div class="contents">
+          <p><%- article.contents%></p>
+        </div>
         <%- article.text%>
       </div>
     </div>

@@ -27,19 +27,19 @@ a:visited {
 }
 
 .main .inner {
-  width: 90vw;
-  margin-left: 5vw;
+  width: 50vw;
+  margin-left: 25vw;
 }
 .article {
   top: 100px;
 }
 .article h1 {
-  font-size: 30px;
+  font-size: 33px;
   margin: 30px;
 }
 
 .article h2 {
-  font-size: 25px;
+  font-size: 30px;
   margin: 25px;
 }
 
@@ -61,4 +61,17 @@ a:visited {
 .article h6 {
   font-size: 5px;
   margin: 5px;
+}
+
+.article p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+pre {
+  font-family: 'Source Code Pro', monospace;
+  padding: 20px;
+  background-color: black;
+  color: rgb(146, 236, 107);
+  border-radius: 5px;
 }

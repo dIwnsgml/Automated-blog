@@ -21,7 +21,6 @@ Router.get('/:category/:title', async (req, res) => {
   console.log(' ' + title)
   const connection = await (await pool).getConnection()
   const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category, ' ' + title]);
-  console.log(article[0])
   res.render('article', {article: article[0]})
 })
 
