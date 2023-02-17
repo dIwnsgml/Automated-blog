@@ -21,7 +21,7 @@ const swiper = new Swiper('.swiper', {
   // And if we need scrollbar
 
 });
-console.log(document.cookie)
+
 const search_bar = document.querySelector(".input-search")
 const search_btn = document.querySelector(".btn-search")
 
