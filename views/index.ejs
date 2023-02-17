@@ -93,15 +93,17 @@
               <% for(var i = 0; typeof article[i] != "undefined"; i++){%>
                 <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
               <li class = >
-                <div class="topic">
-                  <a href=><%= article[i][j].title%></a>
-                </div>
-                <div class="explanation">
-                  <p></p>
-                </div>
-                <div class="tags">
-                  <p></p>
-                </div>
+                <a href=<%=article[i][j].path%>>
+                  <div class="topic">
+                    <%= article[i][j].title%>
+                  </div>
+                  <div class="explanation">
+                    <p></p>
+                  </div>
+                  <div class="tags">
+                    <p></p>
+                  </div>
+                </a>
               </li>
               <%}%>
               <%}%>

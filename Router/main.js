@@ -11,12 +11,17 @@ connection.query("SHOW TABLES", (err, rows) => {
   for(let i = 0; typeof rows[i] != 'undefined'; i++){
     async.waterfall([
       function(callback){
-        connection.query(`SELECT * FROM ??`, [rows[i].Tables_in_automated_blog] ,(err, rows) => {
+        var type = rows[i].Tables_in_automated_blog
+        connection.query(`SELECT * FROM ??`, [type] ,(err, rows) => {
           for(let j = 0; typeof rows[j] != 'undefined'; j++){
             if(j == 0){
               article[i] = []
             }
             article[i][j] = rows[j];
+            article[i][j].path = 'article/' + type + '/--'+ article[i][j].title;
+            article[i][j].path = article[i][j].path.replace("/-- ", "/");
+            article[i][j].path = article[i][j].path.replaceAll(" ", "%20");
+            console.log(article[i][j].path)
             /* console.log(article.length) */
           }
           callback(null, article)
@@ -25,7 +30,7 @@ connection.query("SHOW TABLES", (err, rows) => {
     ])
   }
   Router.get('/', (req, res) => {
-    console.log(article.length)
+    console.log(article.length, article[1][1].path)
     res.render('index', {article:article});
   })
 })
