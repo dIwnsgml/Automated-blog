@@ -3,22 +3,26 @@ const app = express();
 let Router = express.Router();
 const info = require("../config/info.json");
 const { Configuration, OpenAIApi } = require("openai");
-const connection = require("../model/db");
 const async = require("async");
+const pool = require('../model/pool');
 
 
 
 
-Router.get('/:category/:title', (req, res) => {
+Router.get('/:category/:title', async (req, res) => {
   let category = req.params.category;
   let title = req.params.title;
-  let article;
   console.log(category, title)
-  connection.query(`SELECT * FROM ?? WHERE title = ?`, [category, title] ,(err, rows) => {
-    /* res.send(rows[0].text) */
+  /* connection.query(`SELECT * FROM ?? WHERE title = ?`, [category, title] ,(err, rows) => {
+    if(rows[0])
+    console.log
     res.render('article', {article: rows[0]});
-  })
-
+  }) */
+  console.log(' ' + title)
+  const connection = await (await pool).getConnection()
+  const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category, ' ' + title]);
+  console.log(article[0])
+  res.render('article', {article: article[0]})
 })
 
 

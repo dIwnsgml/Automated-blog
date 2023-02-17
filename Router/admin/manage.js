@@ -93,13 +93,13 @@ Router.post('/category/create', (req, res) => {
           //write article
           let new_text = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `write article to this topic using HTML: Variables in ${new_topics_arr}  (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form. Try to write more than 2000 words)`,
+            prompt: `write article to this topic using HTML: Variables in ${new_topics_arr}  (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form. Try to write more than 1300 words)`,
             max_tokens: 3000,
             temperature: 0,
           });
           const post_info = {
-            title: new_topics_arr[index].split(';')[0],
-            contents: new_topics_arr[index].split(';')[1],
+            title: new_topics_arr[index].split('<---->')[0],
+            contents: new_topics_arr[index].split('<---->')[1],
             text: new_text.data.choices[0].text,
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);
