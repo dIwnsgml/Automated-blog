@@ -87,6 +87,24 @@
               </div>
               
             </nav>
+            <div class="sort">
+              <button id = "sort_btn">Sort</button>
+              <div class = "sort-opt">
+                <input
+                  type="radio"
+                  id="contactChoice1"
+                  name="contact"
+                  value="email"
+                  checked />
+                <label for="contactChoice1">Email</label>
+          
+                <input type="radio" id="contactChoice2" name="contact" value="phone" />
+                <label for="contactChoice2">Phone</label>
+          
+                <input type="radio" id="contactChoice3" name="contact" value="mail" />
+                <label for="contactChoice3">Mail</label>
+              </div>
+            </div>
           </div>
           <div class="items"class="scrollbar" id="style-7" >
             <ul>
@@ -94,12 +112,14 @@
                 <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
               <li class = >
                 <a href=<%=article[i][j].path%>>
-                  <div class="topic">
+                  <div class="img_area">
                     <img src=<%= article[i][j].img_url%> alt="">
-                    <%= article[i][j].title%>
+                  </div>
+                  <div class="topic">
+                    <h3><%= article[i][j].title%></h3>
                   </div>
                   <div class="explanation">
-                    <p></p>
+                    <h3><%- article[i][j].contents%></h3>
                   </div>
                   <div class="tags">
                     <p></p>
