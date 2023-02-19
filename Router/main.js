@@ -13,6 +13,9 @@ Router.get("/", async (req, res) => {
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
       articles[i][j].path = ('article/'+tables[i].Tables_in_automated_blog+'/'+articles[i][j].title).replaceAll(' ', "%20");
+      if(articles[i][j].contents){
+        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>")
+      }
     }
     /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
       for(let j = 0; typeof rows[j] != 'undefined'; j++){
