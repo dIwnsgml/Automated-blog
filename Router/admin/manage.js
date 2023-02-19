@@ -3,7 +3,16 @@ const Router = express.Router();
 const pool = require('../../model/pool');
 const info = require("../../config/info.json")
 const { Configuration, OpenAIApi } = require("openai");
+const axios = require("axios");
 
+/* const options = {
+  method: 'GET',
+  url: 'https://www.instagram.com/' + 'account4socialn' + '/following',
+  responseType: 'html',
+  params: {session_key: '<REQUIRED>'},
+  headers: {
+  }
+}; */
 /* connection.query("SELECT * FROM mongodb" ,(err, rows) => {
   console.log(rows[0].text)
 }) */
@@ -71,10 +80,25 @@ Router.post('/category/create', async(req, res) => {
           prompt: `think about what one concept should be thaought in programming and devops blog that are not in this list (${categories})(only say the name of the language or devops without explanation)`,
           max_tokens: 15,
           temperature: 0,
-        });
+        })
+        let img_url;
+        const crawlerOpt = {
+          method: 'GET',
+          url: `https://google.com/search?q=programming ${new_category.data.choices[0].text} logo&tbm=isch`,
+          responseType: 'html',
+          headers: {
+            
+          }
+        }
+        axios.request(crawlerOpt).then(function (response) {
+          img_url = response.data.split('"yWs4tf" alt=')[1].split('="')[1].split('"')[0];
+          /* console.log(img_url); */
+        }).catch(function (error) {
+          console.error(error);
+        }); 
         new_category = new_category.data.choices[0].text.replace(' ', '_');
         new_category = new_category.replace(/[^a-z A-Z 0-9 _]/gi, '');
-
+        console.log(img_url)
         /* planning blog post part */
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
@@ -90,10 +114,11 @@ Router.post('/category/create', async(req, res) => {
 
         connection.query('INSERT INTO category SET ?', {name: new_category})
         console.log(new_category)
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(65000), status varchar(30) default 'no')`)
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
           //write article
+          console.log(img_url)
           let new_text = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `write article that only talks about this topic:${new_topics_arr}. And write in HTML language (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form. Explain each content  precisely as possible by giving many code example and give link when guiding users to download part. Try to write more than 2000 words)`,
@@ -104,6 +129,7 @@ Router.post('/category/create', async(req, res) => {
             title: new_topics_arr[index].split('<---->')[0],
             contents: new_topics_arr[index].split('<---->')[1],
             text: new_text.data.choices[0].text,
+            img_url: img_url,
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);
           index += 1;
