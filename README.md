@@ -12,3 +12,8 @@ example:
 
 to create category database:
 CREATE TABLE category (category_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));
+
+
+To create new category & article, go to http://localhost/admin/manage/category and press button
+
+![image](https://user-images.githubusercontent.com/79344902/220040142-89b690b7-e49e-4689-a5b9-201093887434.png)
