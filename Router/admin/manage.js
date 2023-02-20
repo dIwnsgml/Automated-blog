@@ -65,7 +65,7 @@ Router.post('/category/create', async(req, res) => {
     while(typeof rows[index] != 'undefined') {
       categories = categories.concat(" ", rows[index].name)
       index += 1;
-      console.log(categories)
+      console.log("prev caegories:" + categories)
     };
 
     (async () => {
@@ -75,6 +75,7 @@ Router.post('/category/create', async(req, res) => {
       const openai = new OpenAIApi(configuration);
       
       try {
+        console.log('creating a new category..(this takes about 30sec')
         let new_category = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: `think about what one concept should be thaought in programming and devops blog that are not in this list (${categories})(only say the name of the language or devops without explanation)`,
@@ -90,6 +91,7 @@ Router.post('/category/create', async(req, res) => {
             
           }
         }
+        //crawling blog main img
         axios.request(crawlerOpt).then(function (response) {
           img_url = response.data.split('"yWs4tf" alt=')[1].split('="')[1].split('"')[0];
           /* console.log(img_url); */
@@ -98,8 +100,8 @@ Router.post('/category/create', async(req, res) => {
         }); 
         new_category = new_category.data.choices[0].text.replace(' ', '_');
         new_category = new_category.replace(/[^a-z A-Z 0-9 _]/gi, '');
-        console.log(img_url)
         /* planning blog post part */
+        console.log(`writing blog titles & contents for ${new_category}`);
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. ex) add - at the start of each contents, add ;% at the start of the title and divide the area of title and contents by adding <---->.`,
@@ -113,7 +115,6 @@ Router.post('/category/create', async(req, res) => {
         new_topics_arr.splice(0, 1);
 
         connection.query('INSERT INTO category SET ?', {name: new_category})
-        console.log(new_category)
         connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(100) default 0, status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
@@ -131,10 +132,11 @@ Router.post('/category/create', async(req, res) => {
             img_url: img_url,
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);
+          console.log(`new post created: title: ${post_info.title}, contents: ${post_info.contents}`)
           index += 1;
         }
 
-        console.log(new_category, new_topics, new_topics_arr[0]);
+        console.log("complete!");
       } catch (error) {
         if (error.response) {
           console.log(error.response.status);
