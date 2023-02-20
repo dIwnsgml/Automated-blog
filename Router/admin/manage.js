@@ -102,7 +102,7 @@ Router.post('/category/create', async(req, res) => {
         /* planning blog post part */
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `try to plan many blog posts as many as possible for ${new_category} that is really related to ${new_category}. For topic, anything you want that is closely related to this language such as dev environment setting. create 23 topics or more. Try to divide one post into many posts instead of putting many contents in one article.  ex) instead of putting variable, data types, operators, control flow, loops, functions in one post, put into individual post ex) post 1 only talks about variable, post 2 only talks about function, post 3 only talks about operators. (print only titles and list-up the contents)  rule: add - at start of each content, add ;% at the start of the title and divide the area of title and contents by  adding <---->`,
+          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. ex) add - at the start of each contents, add ;% at the start of the title and divide the area of title and contents by adding <---->.`,
           max_tokens: 1000,
           temperature: 0,
         });
@@ -114,15 +114,14 @@ Router.post('/category/create', async(req, res) => {
 
         connection.query('INSERT INTO category SET ?', {name: new_category})
         console.log(new_category)
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), status varchar(30) default 'no')`)
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(100) default 0, status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
           //write article
-          console.log(img_url)
           let new_text = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `write article that only talks about this topic:${new_topics_arr}. And write in HTML language (at important part, emphasize using h tags and p of html. And to show the code, use code snippet in html form. Explain each content  precisely as possible by giving many code example and give link when guiding users to download part. Try to write more than 2000 words)`,
-            max_tokens: 3000,
+            prompt: `write an article that only talks about this topic:${new_topics_arr[index]}. Write article in HTML language (For example, at important part, emphasize using h tags and use p tag of HTML to show simple text. And to show the code or command, use code snippets in html form. Explain each content  precisely as possible by giving many code examples and giving links when guiding users to download parts. If it’s possible, also put an img tag to show img.  Don't put information that the previously generated articles contained, only put information that was inside the contents part and title of the article. Try to write between 2000 words and 2500 words).`,
+            max_tokens: 2500,
             temperature: 0,
           });
           const post_info = {

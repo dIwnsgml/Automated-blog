@@ -20,7 +20,9 @@ Router.get('/:category/:title', async (req, res) => {
   console.log(' ' + title)
   const connection = await (await pool).getConnection()
   const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category,title]);
-  res.render('article', {article: article[0]})
+  const related_articles = await connection.query("SELECT * FROM ??", [category]);
+  article[0].contents = article[0].contents.replaceAll(";", "<br>");
+  res.render('article', {article: article[0], related_articles: related_articles});
 })
 
 
