@@ -340,13 +340,8 @@ a:visited {
 
   .guideline .items > ul > li a {
     color: #7777fd;
+    text-decoration: none;;
   }
-
-  .guideline .items > ul > li a:hover {
-    color: #7777fd;
-    text-decoration: underline;
-  }
-
   .guideline .items .tags {
     height: 30px;
     text-align: left;
@@ -376,20 +371,19 @@ a:visited {
   }
 
   .guideline .items .topic {
-    font-size: 20px;
+    font-size: 18px;
     margin: 30px 0px 0px 30px;
-    margin-bottom: 0px !important;
     font-weight: bolder;
     text-align: left;
-    height: 60px;
-    margin-bottom: 30px;
+    height: 38px;
     padding: 0px;
   }
 
   .guideline .explanation {
     text-align: left;
     margin-left: 15px;
-    height: 200px;
+    height: 130px;
+    overflow-y: hidden;
     margin-top: 0px;
     overflow-y: hidden;
   }
