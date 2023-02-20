@@ -7,7 +7,8 @@ config folder is not added so add your own config folder and add info.json under
 
 example:
 
-![image](https://user-images.githubusercontent.com/79344902/220010518-8ebcc5d6-8f31-46bf-aab4-542603cd69e7.png)
+![image](https://user-images.githubusercontent.com/79344902/220011092-08860574-20fc-45bb-bf88-cf2b4caebb03.png)
+
 
 to create category database:
 CREATE TABLE category (category_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));
