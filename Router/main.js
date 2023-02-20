@@ -7,9 +7,13 @@ const pool = require('../model/pool');
 
 Router.get("/", async (req, res) => {
   const connection = await (await pool).getConnection()
-  const tables = await connection.query("SHOW TABLES");
+  let tables = await connection.query("SHOW TABLES");
+
   let articles = [];
   for(let i = 0; i < tables.length; i++){
+    /* if(tables[i].Tables_in_automated_blog == "category"){
+      continue;
+    } */
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
       articles[i][j].path = ('article/'+tables[i].Tables_in_automated_blog+'/'+articles[i][j].title).replaceAll(' ', "%20");

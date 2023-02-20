@@ -364,13 +364,15 @@ a:visited {
     background-color: #fff;
     text-align: center;
     align-items: center;
-    display: flex;
     border-radius: 10px;
+    position: relative;
   }
 
   .guideline .items .img_area img{
-    width: 80%;
+    max-width: 100%;
+    max-height: 90%;
     border-radius: 10px;
+    margin-top: 30px;
   }
 
   .guideline .items .topic {
