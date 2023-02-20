@@ -11,9 +11,12 @@ Router.get("/", async (req, res) => {
 
   let articles = [];
   for(let i = 0; i < tables.length; i++){
-    /* if(tables[i].Tables_in_automated_blog == "category"){
-      continue;
-    } */
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
       articles[i][j].path = ('article/'+tables[i].Tables_in_automated_blog+'/'+articles[i][j].title).replaceAll(' ', "%20");

@@ -49,23 +49,29 @@ a:visited {
 }
 
 .main h4 {
-  font-size: 15px;
+  font-size: 20px;
   margin: 15px;
 }
 
 .main h5 {
-  font-size: 10px;
+  font-size: 20px;
   margin: 10px;
 }
 
 .main h6 {
-  font-size: 5px;
+  font-size: 20px;
   margin: 5px;
 }
 
 .main p {
   font-size: 20px;
   line-height: 30px;
+}
+.main li{
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif!important;
+  list-style:square;
+  line-height: 25px;
 }
 
 pre {
