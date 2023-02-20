@@ -15,10 +15,39 @@
     <div class="inner">
       <div class="article">
         <div class="contents">
-          <p><%- article.contents%></p>
+          <h2>Contents</h2>
+          <h3><%- article.contents%></h3>
         </div>
         <%- article.text%>
       </div>
+    </div>
+    <div class="related-wrapper">
+      <h2>Related Articles</h2>
+      <div class="related" id="style-7">
+        <ul>
+          <% for(var i = 0; typeof related_articles[i] != "undefined"; i++){%>
+            <li class = >
+              <a href=<%=related_articles[i].path%>>
+                <div class="img_area">
+                  <img src=<%= related_articles[i].img_url%> alt="">
+                </div>
+                <div class="topic">
+                  <h3><%= related_articles[i].title%></h3>
+                </div>
+                <div class="explanation">
+                  <h3><%- related_articles[i].contents%></h3>
+                </div>
+                <div class="tags">
+                  <p></p>
+                </div>
+              </a>
+            </li>
+          <%}%>
+        </ul>
+      </div>
+    </div>
+    <div class="likes">
+      <button><i class="fa-regular fa-heart"></i> Like</button>
     </div>
   </div>
 </body>
