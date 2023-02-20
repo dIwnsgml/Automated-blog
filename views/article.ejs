@@ -24,9 +24,9 @@
     <div class="related-wrapper">
       <h2>Related Articles</h2>
       <div class="related" id="style-7">
-        <ul>
+        <div class="articles-wrapper">
           <% for(var i = 0; typeof related_articles[i] != "undefined"; i++){%>
-            <li class = >
+            <div class="related_articles">
               <a href=<%=related_articles[i].path%>>
                 <div class="img_area">
                   <img src=<%= related_articles[i].img_url%> alt="">
@@ -41,9 +41,9 @@
                   <p></p>
                 </div>
               </a>
-            </li>
+            </div>
           <%}%>
-        </ul>
+        </div>
       </div>
     </div>
     <div class="likes">

@@ -75,12 +75,11 @@ Router.post('/category/create', async(req, res) => {
       const openai = new OpenAIApi(configuration);
       
       try {
-        console.log('creating a new category..(this takes about 30sec')
         let new_category = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `think about what one concept should be thaought in programming and devops blog that are not in this list (${categories})(only say the name of the language or devops without explanation)`,
+          prompt: `think about what only one concept should be thaought in programming lnagauge, programming, and devops blog that are not in this list (${categories})(only say the name of the language or devops without explanation)`,
           max_tokens: 15,
-          temperature: 0,
+          temperature: 1,
         })
         let img_url;
         const crawlerOpt = {
@@ -98,13 +97,13 @@ Router.post('/category/create', async(req, res) => {
         }).catch(function (error) {
           console.error(error);
         }); 
-        new_category = new_category.data.choices[0].text.replace(' ', '_');
-        new_category = new_category.replace(/[^a-z A-Z 0-9 _]/gi, '');
+        new_category = new_category.data.choices[0].text.replaceAll(' ', '_');
+        new_category = new_category.replaceAll(/[^a-z A-Z 0-9 _]/gi, '');
         /* planning blog post part */
-        console.log(`writing blog titles & contents for ${new_category}`);
+        console.log(`writing blog posts for ${new_category}`);
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. ex) add - at the start of each contents, add ;% at the start of the title and divide the area of title and contents by adding <---->.`,
+          prompt: `Plan between 20 to 30 blog posts about ${new_category}. There should be no special characters such as :, ?, ! inside the title.Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
           max_tokens: 1000,
           temperature: 0,
         });
@@ -121,7 +120,7 @@ Router.post('/category/create', async(req, res) => {
           //write article
           let new_text = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `write an article that only talks about this topic:${new_topics_arr[index]}. Write article in HTML language (For example, at important part, emphasize using h tags and use p tag of HTML to show simple text. And to show the code or command, use code snippets in html form. Explain each content  precisely as possible by giving many code examples and giving links when guiding users to download parts. If it’s possible, also put an img tag to show img.  Don't put information that the previously generated articles contained, only put information that was inside the contents part and title of the article. Try to write between 2000 words and 2500 words).`,
+            prompt: `write an article about this topic:${new_topics_arr[index]}. Write ENTIRE article in HTML language. DO NOT USE PLAIN TEXT. (For example, at important part, emphasize using h tags and use p tag of HTML to pain text. There should be no text that is not in HTML form. And to show the code or command, use code snippets in html form. Explain each content very precisely and very deeply as much as possible by giving many code examples, giving many explanations and giving links when guiding users. If it’s possible, also put an img tag to show img.  Don't put information that the previously generated articles contained, only put information that was inside the contents part and title of the article. Try to write between 2000 words and 2500 words).`,
             max_tokens: 2500,
             temperature: 0,
           });

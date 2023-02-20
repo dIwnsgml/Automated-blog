@@ -109,20 +109,23 @@ pre {
   text-align: center;
   margin-top: 100px;
 }
+
 .related {
   width: 80vw;
   left: 10vw;
   position: absolute;
   text-align: center;
-  overflow-x: scroll;
   overflow-y: hidden;
   height: 450px;
-}
-
-.related > ul {
+  overflow-x: scroll;
   text-align: center;
 }
-.related > ul > li {
+
+.related .articles-wrapper {
+  width:max-content;
+}
+
+.related .related_articles {
   display: block;
   width: 15.5vw;
   height: 400px;
@@ -145,7 +148,7 @@ pre {
   text-decoration: underline;
 }
 
-.related .tags {
+.related .related_articles .tags {
   height: 30px;
   text-align: left;
   font-size: 13px;
@@ -156,7 +159,7 @@ pre {
   width: 15vw;
 }
 
-.related .img_area {
+.related .related_articles .img_area {
   width: 100%;
   height: 50%;
   background-color: #fff;
@@ -166,7 +169,7 @@ pre {
   border-radius: 10px;
 }
 
-.related .img_area img{
+.related .related_articles .img_area img{
   width: 80%;
   border-radius: 10px;
 }
