@@ -90,19 +90,14 @@
             <div class="sort">
               <button id = "sort_btn">Sort</button>
               <div class = "sort-opt">
-                <input
-                  type="radio"
-                  id="contactChoice1"
-                  name="contact"
-                  value="email"
-                  checked />
-                <label for="contactChoice1">Email</label>
+                <input type="radio" id="sortChoice1" name="sort" />
+                <label for="sortChoice1">By views</label>
           
-                <input type="radio" id="contactChoice2" name="contact" value="phone" />
-                <label for="contactChoice2">Phone</label>
+                <input type="radio" id="sortChoice2" name="sort" />
+                <label for="sortChoice2">By likes</label>
           
-                <input type="radio" id="contactChoice3" name="contact" value="mail" />
-                <label for="contactChoice3">Mail</label>
+                <input type="radio" id="sortChoice3" name="sort" checked/>
+                <label for="sortChoice3">By category</label>
               </div>
             </div>
           </div>
@@ -110,14 +105,13 @@
             <ul>
               <% for(var i = 0; typeof article[i] != "undefined"; i++){%>
                 <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
-              <li class = >
+              <li class = article[i][j] + article[i][j].post_id>
                 <a href=<%=article[i][j].path%>>
                   <div class="img_area">
                     <img src=<%= article[i][j].img_url%> alt="">
                   </div>
                   <div class="topic">
-                    <h3><%= article[i][j].title%></h3>
-                    <p><%= article[i][j].likes%> likes</p>
+                    <h3><%= article[i][j].title%> <i class="fa-regular fa-heart"></i> <%= article[i][j].likes%></h3>
                   </div>
                   <div class="explanation">
                     <h3><%- article[i][j].contents%></h3>
@@ -131,34 +125,6 @@
               <%}%>
             </ul>
           </div>
-        </div>
-        <div class="create">
-          <div class="title">
-            <h2>Guideline</h2>
-          </div>
-          <div class="steps">
-            <div class="wrapper">
-              <div class="toggle_radio">
-                <input type="radio" class="toggle_option" id="first_toggle" name="toggle_option">
-                <input type="radio" checked class="toggle_option" id="second_toggle" name="toggle_option">
-                <label for="first_toggle">
-                    <p class="day">Project without Github repo</p>
-                  <span class="day-week"><i class="fa-brands fa-github"></i></span>
-                </label>
-                <label for="second_toggle">
-                    <p class="day">Project with Github repo </p>
-                </label>
-                <div class="toggle_option_slider">
-                </div>
-              </div>
-            </div>
-            <div class="step-text">
-              <div class="with-github">
-              </div>
-            </div>
-            <div class="without-github">
-              <p>Sign in to create board to opensource project!</p>
-            </div>
         </div>
       </div>
     </div>

@@ -64,18 +64,6 @@ options.forEach(option =>
   current = option.index;
 }));
 
-const guideline_blur = document.querySelector(".toggle_option_slider")
-let dir = 0;
-guideline_blur.addEventListener("click", () => {
-  if (dir % 2 == 0){
-    guideline_blur.style = "left: 0px;     background: rgba(255,255,255,.3);;"
-  } else {
-    guideline_blur.style = "left: 330px;     background: rgba(255,255,255,.3);"
-
-  }
-  dir += 1;
-})
-
 const category_btn1 = document.querySelector(".slide-item-1");
 const category_btn2 = document.querySelector(".slide-item-2");
 const category_btn3 = document.querySelector(".slide-item-3");
@@ -127,5 +115,85 @@ category_btn5.addEventListener("click", () => {
     } else {
       items[i].style = "display: block;";
     }
+  }
+});
+
+const btn_sort_views = document.querySelector("#sortChoice1");
+btn_sort_views.addEventListener('click', async () => {
+  const response = await fetch("/sort", {method: 'POST'});
+  const text = await response.json();
+  console.log(text.article[0][0].views);
+  let articles = [];
+  let index = 0;
+  for(let i = 0; typeof text.article[i] != 'undefined'; i++){
+    for(let j = 0; typeof text.article[i][j] != 'undefined'; j++){
+      articles[index] = text.article[i][j];
+      index += 1;
+    }
+  }
+  console.log(articles[0])
+  articles.sort((a, b) => {
+    if(a.views > b.views){
+      return -1;
+    }
+    if(a.views < b.views){
+      return 1;
+    }
+    return 0;
+  });
+
+  let article_container = document.querySelectorAll(".items > ul > li")
+  for(let i = 0; i < articles.length; i++){
+    article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
+  }
+})
+
+const btn_sort_likes = document.querySelector("#sortChoice2");
+btn_sort_likes.addEventListener('click', async () => {
+  const response = await fetch("/sort", {method: 'POST'});
+  const text = await response.json();
+  console.log(text.article[0][0].views);
+  let articles = [];
+  let index = 0;
+  for(let i = 0; typeof text.article[i] != 'undefined'; i++){
+    for(let j = 0; typeof text.article[i][j] != 'undefined'; j++){
+      articles[index] = text.article[i][j];
+      index += 1;
+    }
+  }
+  console.log(articles[0])
+  articles.sort((a, b) => {
+    if(a.likes > b.likes){
+      return -1;
+    }
+    if(a.likes < b.likes){
+      return 1;
+    }
+    return 0;
+  });
+
+  let article_container = document.querySelectorAll(".items > ul > li")
+  for(let i = 0; i < articles.length; i++){
+    article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
+  }
+})
+
+const btn_sort_category = document.querySelector("#sortChoice3");
+btn_sort_category.addEventListener('click', async () => {
+  const response = await fetch("/sort", {method: 'POST'});
+  const text = await response.json();
+  console.log(text.article[0][0].views);
+  let articles = [];
+  let index = 0;
+  for(let i = 0; typeof text.article[i] != 'undefined'; i++){
+    for(let j = 0; typeof text.article[i][j] != 'undefined'; j++){
+      articles[index] = text.article[i][j];
+      index += 1;
+    }
+  }
+
+  let article_container = document.querySelectorAll(".items > ul > li")
+  for(let i = 0; i < articles.length; i++){
+    article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
   }
 })
