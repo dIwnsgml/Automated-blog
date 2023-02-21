@@ -103,7 +103,7 @@ Router.post('/category/create', async(req, res) => {
         console.log(`writing blog posts for ${new_category}`);
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Plan between 20 to 30 blog posts about ${new_category}. There should be no special characters such as :, ?, ! inside the title.Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
+          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only use A-Z for title of the ppost and don't put numbers. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
           max_tokens: 1000,
           temperature: 0,
         });
@@ -114,7 +114,7 @@ Router.post('/category/create', async(req, res) => {
         new_topics_arr.splice(0, 1);
 
         connection.query('INSERT INTO category SET ?', {name: new_category})
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(100) default 0, status varchar(30) default 'no')`)
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(200) default 0, views int(200) default 0, path varchar(300), status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
           //write article
@@ -128,6 +128,7 @@ Router.post('/category/create', async(req, res) => {
             title: new_topics_arr[index].split('<---->')[0],
             contents: new_topics_arr[index].split('<---->')[1],
             text: new_text.data.choices[0].text,
+            path:('article/'+new_category+'/'+new_topics_arr[index].split('<---->')[0]).replaceAll(' ', "%20"),
             img_url: img_url,
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);

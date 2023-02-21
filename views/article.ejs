@@ -21,13 +21,16 @@
         <%- article.text%>
       </div>
     </div>
+    <div class="likes">
+      <button id = "btn_likes"><i class="fa-regular fa-heart"></i> Like <%= article.likes %></button>
+    </div>
     <div class="related-wrapper">
       <h2>Related Articles</h2>
       <div class="related" id="style-7">
         <div class="articles-wrapper">
           <% for(var i = 0; typeof related_articles[i] != "undefined"; i++){%>
-            <div class="related_articles">
-              <a href=<%=related_articles[i].path%>>
+            <div class="related_articles" id = <%= related_articles[i].post_id %>>
+              <a href=<%=related_articles[i].title.replaceAll(' ', '%20')%>>
                 <div class="img_area">
                   <img src=<%= related_articles[i].img_url%> alt="">
                 </div>
@@ -45,9 +48,6 @@
           <%}%>
         </div>
       </div>
-    </div>
-    <div class="likes">
-      <button id = "btn_likes"><i class="fa-regular fa-heart"></i> Like</button>
     </div>
   </div>
 </body>

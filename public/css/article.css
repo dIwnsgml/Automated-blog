@@ -74,12 +74,18 @@ a:visited {
   line-height: 25px;
 }
 
-pre {
+pre, code {
   font-family: 'Source Code Pro', monospace;
-  padding: 20px;
+  padding: 10px;
   background-color: black;
   color: rgb(146, 236, 107);
   border-radius: 5px;
+  line-height: 50px;
+}
+
+p > code {
+  padding: 0px;
+  line-height: 30px;
 }
 
 .items > ul {
@@ -145,7 +151,7 @@ pre {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.related > ul > li a {
+.related a {
   color: #7777fd;
 }
 
@@ -216,4 +222,8 @@ pre {
   border-radius: 10px;
   border: none;
   color: #fff;
+  font-size: 20px;
+}
+.likes button p{
+  float: right;
 }

@@ -19,7 +19,6 @@ Router.get("/", async (req, res) => {
     }
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
-      articles[i][j].path = ('article/'+tables[i].Tables_in_automated_blog+'/'+articles[i][j].title).replaceAll(' ', "%20");
       if(articles[i][j].contents){
         articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>")
       }
@@ -60,7 +59,22 @@ Router.get("/", async (req, res) => {
   })
 })
  */
+Router.post('/sort', async (req, res) => {
+  const connection = await (await pool).getConnection();
+  let articles = [];
+  let tables = await connection.query("SHOW TABLES");
 
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+    articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
+  }
+  res.send({article: articles})
+})
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
 });
