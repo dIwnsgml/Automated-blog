@@ -72,7 +72,7 @@ const category_btn5 = document.querySelector(".slide-item-5");
 
 const items = document.querySelectorAll(".items > ul > li");
 
-category_btn1.addEventListener("click", () => {
+/* category_btn1.addEventListener("click", () => {
   for(let i = 0; i < items.length; i++){
     items[i].style = "display: block;";
   }
@@ -117,7 +117,7 @@ category_btn5.addEventListener("click", () => {
     }
   }
 });
-
+ */
 const btn_sort_views = document.querySelector("#sortChoice1");
 btn_sort_views.addEventListener('click', async () => {
   const response = await fetch("/sort", {method: 'POST'});
@@ -212,9 +212,49 @@ btn_sort_category.addEventListener('click', async () => {
     }
     return 0;
   });
-  console.log(text)
+  let popular_categories = document.querySelectorAll(".slide-item");
+
+  for(let i = 1; (i < text.length) && i < 10; i++ ){
+    let input = document.createElement("input");
+    input.setAttribute("type", "radio");
+    input.setAttribute("name", "slideItem")
+    input.setAttribute("id", `slide-item-${i + 1}`);
+    input.setAttribute("class", "slide-toggle");
+    input.setAttribute("checked", "true");
+    category_slider.appendChild(input)
+    let label = document.createElement("label");
+    label.setAttribute("for", `slide-item-${i + 1}`);
+    label.setAttribute("class", `slide-item-${i + 1}`);
+    category_slider.appendChild(label);
+    let button = document.createElement("button");
+    button.setAttribute("class", "icon");
+    label.appendChild(button);
+    let span = document.createElement("span");
+    span.innerText = text[i].name;
+    label.appendChild(span);
+    label.addEventListener('click', () => {
+      let li = document.querySelectorAll(".items > ul > li");
+      for(let j = 0; j < li.length; j ++){
+        if(li[j].classList.contains((text[i].name).toLowerCase())){
+          li[j].style.display = "block";
+          console.log(li[j].classList, (text[i].name).toLowerCase(), li[j].classList.contains((text[i].name).toLowerCase()))
+        } else {
+          li[j].style.display = "none";
+        }
+      }
+    })
+  }
+  let clear = document.createElement("div");
+  clear.setAttribute("class", "clear");
+  category_slider.appendChild(clear);
+  let slider = document.createElement("div");
+  slider.setAttribute("class", "slider");
+  category_slider.appendChild(slider);
+  let bar = document.createElement("div");
+  bar.setAttribute("class", "bar");
+  slider.appendChild(bar);
 })();
 
 const fields = ['software', 'hardware', 'algorithm', 'programming lnaguage', 'data structure', 'architectre', 'networking'];
 let field = fields[Math.floor(Math.random() * (fields.length))];
-console.log(field);
+

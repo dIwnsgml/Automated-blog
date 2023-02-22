@@ -13,6 +13,7 @@
     <div class="swiper" id = "pc">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
+          <img src="./img/ai_writing.png" alt="">
           <div class="top">
             <div class="blur">
               <div class="text">
@@ -42,49 +43,19 @@
       <div class="swiper-scrollbar"></div> -->
     </div>
     <div class="section">
-      <div class="inner">
-        <div class="guideline">
+      <div class="g-top">
+        <div class="inner">
           <div class="title">
             <h2>Popular Categories</h2>
-            <a href="">View all catecories<i class="fa-solid fa-arrow-right"></i></a>
+            <a href="">View all categories<i class="fa-solid fa-arrow-right"></i></a>
           </div>
           <div class="categories">
             <nav class="slidemenu">
   
               <!-- Item 1 -->
               <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
-              <label for="slide-item-1" class = "slide-item-1"><button class = "icon"><i class="fa-solid fa-globe"></i></i></button><span>All</span></label>
+              <label for="slide-item-1" class = "slide-item-1 slide-item"><button class = "icon"><i class="fa-solid fa-globe"></i></i></button><span>All</span></label>
               
-              <!-- Item 2 -->
-              <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle"/>
-              <label for="slide-item-2" class = "slide-item-2"><button class = "icon"><i class="fa-brands fa-java"></i></button><span>Java</span></label>
-              
-              <!-- Item 3 -->
-              <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
-              <label for="slide-item-3" class = "slide-item-3"><button class = "icon"><i class="fa-solid fa-c"></i></button><span>C</span></label>
-              
-              <!-- Item 4 -->
-              <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle"/>
-              <label for="slide-item-4" class = "slide-item-4"><button class = "icon"><i class="fa-brands fa-js"></i></button><span>JS</span></label>
-              <input type="radio" name="slideItem" id="slide-item-5" class="slide-toggle"/>
-              <label for="slide-item-5" class = "slide-item-5"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              <input type="radio" name="slideItem" id="slide-item-6" class="slide-toggle"/>
-              <label for="slide-item-6" class = "slide-item-6"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              <input type="radio" name="slideItem" id="slide-item-7" class="slide-toggle"/>
-              <label for="slide-item-7" class = "slide-item-7"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              <input type="radio" name="slideItem" id="slide-item-8" class="slide-toggle"/>
-              <label for="slide-item-8" class = "slide-item-8"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              <input type="radio" name="slideItem" id="slide-item-9" class="slide-toggle"/>
-              <label for="slide-item-9" class = "slide-item-9"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              <input type="radio" name="slideItem" id="slide-item-10" class="slide-toggle"/>
-              <label for="slide-item-10" class = "slide-item-10"><button class = "icon"><i class="fa-brands fa-python"></i></button><span>PY</span></label>
-              
-              <div class="clear"></div>
-              
-              <!-- Bar -->
-              <div class="slider">
-                <div class="bar"></div>
-              </div>
               
             </nav>
             <div class="sort">
@@ -101,11 +72,15 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="inner">
+        <div class="guideline">
           <div class="items"class="scrollbar" id="style-7" >
             <ul>
               <% for(var i = 0; typeof article[i] != "undefined"; i++){%>
                 <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
-              <li class = article[i][j] + article[i][j].post_id>
+              <li class = <%=categories[i].Tables_in_automated_blog%>>
                 <a href=<%=article[i][j].path%>>
                   <div class="img_area">
                     <img src=<%= article[i][j].img_url%> alt="">
