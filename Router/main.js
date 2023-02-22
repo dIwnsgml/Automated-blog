@@ -20,7 +20,7 @@ Router.get("/", async (req, res) => {
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
       if(articles[i][j].contents){
-        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>")
+        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>");
       }
     }
     /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
@@ -31,7 +31,7 @@ Router.get("/", async (req, res) => {
     }); */
   }
   connection.release();
-  res.render('index', {article: articles})
+  res.render('index', {article: articles, categories: tables})
 })
 /* connection.query("SHOW TABLES", (err, rows) => {
   for(let i = 0; typeof rows[i] != 'undefined'; i++){

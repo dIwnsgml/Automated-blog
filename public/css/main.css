@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 a:visited {
   color: #000;
 }
@@ -65,6 +69,7 @@ a:visited {
     object-fit: cover;
     object-position: center; /* Center the image within the element */
     width: auto;
+    position: absolute;
   }
   
   .swiper-pagination {
@@ -85,7 +90,6 @@ a:visited {
   }
 
   .main .top .blur {
-    background-color: rgba(214, 214, 214, 0.533);
     width: 100vw;
     height: 100vh;
     animation: blur 2s alternate forwards;
@@ -138,22 +142,32 @@ a:visited {
     position: absolute;
   }
 
-  .main .section .guideline .title{
+  .main .section .title{
     display: flex;
+    padding-top: 100px;
   }
+
+  .main .section .g-top {
+    position: relative;
+    background-color: rgb(236, 209, 170);
+    width: 100vw;
+    left: 0px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    margin-bottom: 50px;
+  }
+
   .main .section .inner {
     width: 70vw;
     transform: translate(15vw);
     position: relative;
   }
 
-  .main .section .inner .title h2{
-    color: #7777fd;
-    font-size: 30px;
-    margin-right: 40px;
+  .main .section .title h2{
+    color: #000;
+    font-size: 60px;
   }
 
-  .main .section .inner .title a {
+  .main .section .title a {
     color: #000;
     padding: 10px 20px 10px 20px;
     position: relative;
@@ -187,6 +201,10 @@ a:visited {
     margin: 50px auto;
     overflow: hidden;
   }
+
+  .slidemenu input {
+    z-index: 100;
+  }
   
   .slidemenu label{
     width: var(--bar_width);
@@ -195,6 +213,7 @@ a:visited {
     float: left;
     color: #333;
     opacity: 0.2;
+    z-index: -10;
   
   }
   
@@ -266,6 +285,7 @@ a:visited {
   
   .sort {
     height: 150px;
+    font-family: 'Montserrat', sans-serif!important;
   }
   .sort button#sort_btn{
     padding: 20px;
@@ -452,7 +472,6 @@ a:visited {
     margin-left: 7.5px;
     margin-right: 7.5px;
     height: 100px;
-    font-family: "Lato";
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
