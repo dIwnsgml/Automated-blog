@@ -30,6 +30,7 @@ Router.get("/", async (req, res) => {
       }
     }); */
   }
+  connection.release();
   res.render('index', {article: articles})
 })
 /* connection.query("SHOW TABLES", (err, rows) => {
@@ -63,7 +64,7 @@ Router.post('/sort', async (req, res) => {
   const connection = await (await pool).getConnection();
   let articles = [];
   let tables = await connection.query("SHOW TABLES");
-
+  connection.release();
   for(let i = 0; i < tables.length; i++){
     //remove category table
     if(tables[i].Tables_in_automated_blog == "category"){
@@ -73,8 +74,16 @@ Router.post('/sort', async (req, res) => {
     }
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
   }
-  res.send({article: articles})
+  res.send({article: articles});
 })
+
+Router.post('/getinfo', async (req, res) => {
+  const connection = await (await pool).getConnection();
+  let tables = await connection.query("SELECT * FROM category");
+  connection.release();
+  res.send(tables);  
+})
+
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
 });
