@@ -196,4 +196,25 @@ btn_sort_category.addEventListener('click', async () => {
   for(let i = 0; i < articles.length; i++){
     article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
   }
-})
+});
+
+//For category slider
+(async () => {
+  const category_slider = document.querySelector(".slidemenu");
+  const response = await fetch("/getinfo", {method: 'POST'});
+  const text = await response.json();
+  text.sort((a, b) => {
+    if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
+      return -1
+    }
+    if(a.likes * 3 + a.views * 7 < b.likes * 3 + b.views * 7) {
+      return 1
+    }
+    return 0;
+  });
+  console.log(text)
+})();
+
+const fields = ['software', 'hardware', 'algorithm', 'programming lnaguage', 'data structure', 'architectre', 'networking'];
+let field = fields[Math.floor(Math.random() * (fields.length))];
+console.log(field);

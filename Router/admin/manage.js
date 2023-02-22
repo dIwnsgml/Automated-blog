@@ -75,12 +75,18 @@ Router.post('/category/create', async(req, res) => {
       const openai = new OpenAIApi(configuration);
       
       try {
+        const fields = ['software', 'hardware', 'algorithm', 'programming language', 'data structure', 'computer architectre', 'networking'];
+        let field = fields[Math.floor(Math.random() * (fields.length))];
+        console.log(field);
+
+        
         let new_category = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `think about what only one concept should be thaought in programming lnagauge, programming, and devops blog that are not in this list (${categories})(only say the name of the language or devops without explanation)`,
+          prompt: `Think one thing to talk about ${field} that is not in this list (${categories}). (only say the name of the concepts without explanation and periods).`,
           max_tokens: 15,
           temperature: 1,
-        })
+        });
+
         let img_url;
         const crawlerOpt = {
           method: 'GET',
@@ -113,8 +119,8 @@ Router.post('/category/create', async(req, res) => {
         /* remove blank */
         new_topics_arr.splice(0, 1);
 
-        connection.query('INSERT INTO category SET ?', {name: new_category})
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(200) default 0, views int(200) default 0, path varchar(300), status varchar(30) default 'no')`)
+        connection.query('INSERT INTO category SET ?', {name: new_category, field: field});
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(500), contents VARCHAR(20000), text varchar(45000), img_url varchar(200), likes int(200) default 0, views int(200) default 0, path varchar(300), field varchar(100), status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
           //write article
@@ -130,6 +136,7 @@ Router.post('/category/create', async(req, res) => {
             text: new_text.data.choices[0].text,
             path:('article/'+new_category+'/'+new_topics_arr[index].split('<---->')[0]).replaceAll(' ', "%20"),
             img_url: img_url,
+            field: field
           }
           connection.query(`INSERT INTO ${new_category} SET ?`, post_info);
           console.log(`new post created: title: ${post_info.title}, contents: ${post_info.contents}`)
