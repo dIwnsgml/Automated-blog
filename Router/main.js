@@ -60,20 +60,27 @@ Router.get("/", async (req, res) => {
   })
 })
  */
-Router.post('/sort', async (req, res) => {
+Router.post('/sort/:category', async (req, res) => {
   const connection = await (await pool).getConnection();
+  let category = req.params.category;
+  console.log(category)
   let articles = [];
   let tables = await connection.query("SHOW TABLES");
   connection.release();
-  for(let i = 0; i < tables.length; i++){
-    //remove category table
-    if(tables[i].Tables_in_automated_blog == "category"){
-      tables.splice(i, 1);
-      i -= 1;
-      continue
+  if(category == "all"){
+    for(let i = 0; i < tables.length; i++){
+      //remove category table
+      if(tables[i].Tables_in_automated_blog == "category"){
+        tables.splice(i, 1);
+        i -= 1;
+        continue
+      }
+      articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     }
-    articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
+  } else {
+    articles[0] = await connection.query("SELECT * FROM ??", [category]);
   }
+
   res.send({article: articles});
 })
 
