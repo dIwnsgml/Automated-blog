@@ -64,65 +64,81 @@ options.forEach(option =>
   current = option.index;
 }));
 
-const category_btn1 = document.querySelector(".slide-item-1");
-const category_btn2 = document.querySelector(".slide-item-2");
-const category_btn3 = document.querySelector(".slide-item-3");
-const category_btn4 = document.querySelector(".slide-item-4");
-const category_btn5 = document.querySelector(".slide-item-5");
 
-const items = document.querySelectorAll(".items > ul > li");
+//For category slider
+(async () => {
+  const category_slider = document.querySelector(".slidemenu");
+  const response = await fetch("/getinfo", {method: 'POST'});
+  const text = await response.json();
+  text.sort((a, b) => {
+    if(a.likes * 3 + a.views * 7 < b.likes * 3 + b.views * 7) {
+      return -1
+    }
+    if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
+      return 1
+    }
+    return 0;
+  });
+  let popular_categories = document.querySelectorAll(".slide-item");
 
-/* category_btn1.addEventListener("click", () => {
-  for(let i = 0; i < items.length; i++){
-    items[i].style = "display: block;";
+  for(let i = 1; (i < text.length) && i < 10; i++ ){
+    let input = document.createElement("input");
+    input.setAttribute("type", "radio");
+    input.setAttribute("name", "slideItem")
+    input.setAttribute("id", `slide-item-${i + 1}`);
+    input.setAttribute("class", "slide-toggle");
+    //input.setAttribute("checked", "true");
+    category_slider.appendChild(input)
+    var label = document.createElement("label");
+    label.setAttribute("for", `slide-item-${i + 1}`);
+    label.setAttribute("class", `slide-item-${i + 1} ${text[i].name}`);
+    category_slider.appendChild(label);
+    let button = document.createElement("button");
+    button.setAttribute("class", "icon");
+    label.appendChild(button);
+    let span = document.createElement("span");
+    span.innerText = text[i].name.replaceAll("_", " ");
+    label.appendChild(span);
+    label.addEventListener('click', () => {
+      let li = document.querySelectorAll(".items > ul > li");
+      for(let j = 0; j < li.length; j ++){
+        if(li[j].classList.contains((text[i].name).toLowerCase())){
+          li[j].style.display = "block";
+          console.log(li[j].classList, (text[i].name).toLowerCase(), li[j].classList.contains((text[i].name).toLowerCase()))
+        } else {
+          li[j].style.display = "none";
+        }
+      }
+    })
   }
-})
+  let clear = document.createElement("div");
+  clear.setAttribute("class", "clear");
+  category_slider.appendChild(clear);
+  let slider = document.createElement("div");
+  slider.setAttribute("class", "slider");
+  category_slider.appendChild(slider);
+  let bar = document.createElement("div");
+  bar.setAttribute("class", "bar");
+  slider.appendChild(bar);
 
-category_btn2.addEventListener("click", () => {
-  for(let i = 0; i < items.length; i++){
-    if(items[i].classList != "Java"){
-      items[i].style = "display: none;";
-    } else {
+  const category_btn1 = document.querySelector(".slide-item-1");
+  const category_input_1 = document.querySelector("#slide-item-1");
+  const items = document.querySelectorAll(".items > ul > li");
+  //category_input_1.setAttribute("checked", "true")
+  category_btn1.addEventListener("click", () => {
+    for(let i = 0; i < items.length; i++){
       items[i].style = "display: block;";
     }
-  }
-})
+  });
+})();
 
-category_btn3.addEventListener("click", () => {
-  for(let i = 0; i < items.length; i++){
-    if(items[i].classList != "C"){
-      items[i].style = "display: none;";
-    } else {
-      items[i].style = "display: block;";
-    }
-  }
-})
 
-category_btn4.addEventListener("click", () => {
-  for(let i = 0; i < items.length; i++){
-    if(items[i].classList != "JavaScript"){
-      items[i].style = "display: none;";
-    } else {
-      items[i].style = "display: block;";
-    }
-  }
-})
-
-category_btn5.addEventListener("click", () => {
-  for(let i = 0; i < items.length; i++){
-    if(items[i].classList != "Python"){
-      items[i].style = "display: none;";
-    } else {
-      items[i].style = "display: block;";
-    }
-  }
-});
- */
 const btn_sort_views = document.querySelector("#sortChoice1");
 btn_sort_views.addEventListener('click', async () => {
-  const response = await fetch("/sort", {method: 'POST'});
+  const active_category = document.querySelector("input.slide-toggle:checked");
+  const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
+  const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
-  console.log(text.article[0][0].views);
   let articles = [];
   let index = 0;
   for(let i = 0; typeof text.article[i] != 'undefined'; i++){
@@ -150,7 +166,8 @@ btn_sort_views.addEventListener('click', async () => {
 
 const btn_sort_likes = document.querySelector("#sortChoice2");
 btn_sort_likes.addEventListener('click', async () => {
-  const response = await fetch("/sort", {method: 'POST'});
+  const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
+  const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
   console.log(text.article[0][0].views);
   let articles = [];
@@ -180,7 +197,8 @@ btn_sort_likes.addEventListener('click', async () => {
 
 const btn_sort_category = document.querySelector("#sortChoice3");
 btn_sort_category.addEventListener('click', async () => {
-  const response = await fetch("/sort", {method: 'POST'});
+  const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
+  const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
   console.log(text.article[0][0].views);
   let articles = [];
@@ -197,63 +215,6 @@ btn_sort_category.addEventListener('click', async () => {
     article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
   }
 });
-
-//For category slider
-(async () => {
-  const category_slider = document.querySelector(".slidemenu");
-  const response = await fetch("/getinfo", {method: 'POST'});
-  const text = await response.json();
-  text.sort((a, b) => {
-    if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
-      return -1
-    }
-    if(a.likes * 3 + a.views * 7 < b.likes * 3 + b.views * 7) {
-      return 1
-    }
-    return 0;
-  });
-  let popular_categories = document.querySelectorAll(".slide-item");
-
-  for(let i = 1; (i < text.length) && i < 10; i++ ){
-    let input = document.createElement("input");
-    input.setAttribute("type", "radio");
-    input.setAttribute("name", "slideItem")
-    input.setAttribute("id", `slide-item-${i + 1}`);
-    input.setAttribute("class", "slide-toggle");
-    input.setAttribute("checked", "true");
-    category_slider.appendChild(input)
-    let label = document.createElement("label");
-    label.setAttribute("for", `slide-item-${i + 1}`);
-    label.setAttribute("class", `slide-item-${i + 1}`);
-    category_slider.appendChild(label);
-    let button = document.createElement("button");
-    button.setAttribute("class", "icon");
-    label.appendChild(button);
-    let span = document.createElement("span");
-    span.innerText = text[i].name;
-    label.appendChild(span);
-    label.addEventListener('click', () => {
-      let li = document.querySelectorAll(".items > ul > li");
-      for(let j = 0; j < li.length; j ++){
-        if(li[j].classList.contains((text[i].name).toLowerCase())){
-          li[j].style.display = "block";
-          console.log(li[j].classList, (text[i].name).toLowerCase(), li[j].classList.contains((text[i].name).toLowerCase()))
-        } else {
-          li[j].style.display = "none";
-        }
-      }
-    })
-  }
-  let clear = document.createElement("div");
-  clear.setAttribute("class", "clear");
-  category_slider.appendChild(clear);
-  let slider = document.createElement("div");
-  slider.setAttribute("class", "slider");
-  category_slider.appendChild(slider);
-  let bar = document.createElement("div");
-  bar.setAttribute("class", "bar");
-  slider.appendChild(bar);
-})();
 
 const fields = ['software', 'hardware', 'algorithm', 'programming lnaguage', 'data structure', 'architectre', 'networking'];
 let field = fields[Math.floor(Math.random() * (fields.length))];
