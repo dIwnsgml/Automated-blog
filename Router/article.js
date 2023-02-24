@@ -22,13 +22,14 @@ Router.get('/:category/:title', async (req, res) => {
   connection.query("UPDATE category set views=views+1 WHERE name = ?", [category]);
   connection.query("UPDATE ?? set views=views+1 WHERE title = ?", [category, title]);
   const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category,title]);
+  const categories = await connection.query("SHOW TABLES");
   const related_articles = await connection.query("SELECT * FROM ??", [category]);
   article[0].contents = article[0].contents.replaceAll(";", "<br>");
   for(let i = 0; typeof related_articles[i] != 'undefined'; i++){
     related_articles[i].contents = related_articles[i].contents.replaceAll(";", "<br>");
   }
   connection.release();
-  res.render('article', {article: article[0], related_articles: related_articles});
+  res.render('article', {article: article[0], related_articles: related_articles, category: category});
 })
 
 Router.post('/:category/:title/:like', async(req, res) => {
