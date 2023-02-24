@@ -3,19 +3,16 @@ const app = express();
 let Router = express.Router();
 const info = require("../config/info.json");
 const { Configuration, OpenAIApi } = require("openai");
-const connection = require("../model/db");
+const pool = require("../model/pool");
 const async = require("async");
 
-Router.get('/:tagId', (req, res) => {
-  console.log(req.params.tagId)
-  var article = [];
-
-  connection.query(`SELECT * FROM ??`, [req.params.tagId] ,(err, rows) => {
-    for(let i = 0; typeof rows[i] != 'undefined'; i++){
-      article[i] = rows[i];
-    }
-    res.render('category', {article:article});
-  })
+Router.get('/:category', async(req, res) => {
+  const category = req.params.category
+  const connection = await (await pool).getConnection();
+  const categories = await connection.query("SHOW TABLES");
+  const articles = await connection.query("SELECT * FROM ??", [category]);
+  res.render('category', {articles: articles, categories: categories})
+  console.log(req.params.category)
 })
 
 

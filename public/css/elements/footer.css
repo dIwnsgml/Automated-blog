@@ -1,50 +1,52 @@
-footer{
-  position: relative;  
-  bottom: 0;
-  width: 100%;
-  background-color: #000;
-  height: 113px;
-  flex-direction: column;
-  display: flex;
+.section {
+  width: 100vw;
 }
-footer .inner {
-  width: 80vw;
-  transform: translate(10vw);
+footer {
   position: relative;
+  width: 100%;
+  background-color: rgb(236, 209, 170);;
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+  height: 500px;
 }
 
-footer ul li {
-  display: inline-block;
-  margin: 20px;
-}
-
-footer ul li:nth-child(n + 4) {
-  float: right;
-}
-
-footer .line {
-  border: solid 1px #fff;
-  background-color: #fff;
-  width: 80vw;
-}
-
-footer .bottom {
-  margin: 20px;
+footer a:visited{
   color: #fff;
 }
 
-@media (max-width: 700px) {
-  footer ul li {
-    margin: 3px;
-    font-size: 13px;
-  }
+footer > .inner{
+  width: 100%;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-  footer .inner {
-    width: 100vw;
-    transform: translate(0);
-  }
+footer > .inner > div{
+  margin: 100px 60px 0px 60px;
+  text-align: left;
+}
 
-  footer .line {
-    width: 100vw;
-  }
+footer > .inner > div h4{
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+footer > .inner > .news-letter input{
+  margin-top: 30px;
+  width: 250px;
+  height: 43px;
+}
+
+footer > .inner > .categories {
+  overflow-y: hidden;
+  max-height: 300px;
+}
+footer > .inner > .categories ul li{
+  font-size: 20px;
+}
+
+footer > .inner > .github a{
+  font-size: 33px;
 }

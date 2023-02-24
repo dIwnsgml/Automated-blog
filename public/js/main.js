@@ -22,9 +22,6 @@ const swiper = new Swiper('.swiper', {
 
 });
 
-const search_bar = document.querySelector(".input-search")
-const search_btn = document.querySelector(".btn-search")
-
 
 search_bar.addEventListener('focus', (event) => {
   search_btn.style.color = "#0000ff"
@@ -36,17 +33,7 @@ search_bar.addEventListener('focusout', (event) => {
   console.log(search_btn.style.color)
 })
 
-//header change
 
-const header = document.querySelector("header")
-
-window.onscroll = function(e) {
-  if(window.pageYOffset != 0) {
-    header.style = "background-color: #fff;"
-  } else {
-    header.style = "background-color: transparent; border: none;"
-  }
-}
 
 const barOuter = document.querySelector(".bar-outer");
 const options = document.querySelectorAll(".bar-grey .option");
@@ -71,10 +58,10 @@ options.forEach(option =>
   const response = await fetch("/getinfo", {method: 'POST'});
   const text = await response.json();
   text.sort((a, b) => {
-    if(a.likes * 3 + a.views * 7 < b.likes * 3 + b.views * 7) {
+    if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
       return -1
     }
-    if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
+    if(a.likes * 3 + a.views * 7 < b.likes * 3 + b.views * 7) {
       return 1
     }
     return 0;
@@ -91,20 +78,20 @@ options.forEach(option =>
     category_slider.appendChild(input)
     var label = document.createElement("label");
     label.setAttribute("for", `slide-item-${i + 1}`);
-    label.setAttribute("class", `slide-item-${i + 1} ${text[i].name}`);
+    label.setAttribute("class", `slide-item-${i + 1} ${text[i - 1].name}`);
     category_slider.appendChild(label);
     let button = document.createElement("button");
     button.setAttribute("class", "icon");
     label.appendChild(button);
     let span = document.createElement("span");
-    span.innerText = text[i].name.replaceAll("_", " ");
+    span.innerText = text[i - 1].name.replaceAll("_", " ");
     label.appendChild(span);
     label.addEventListener('click', () => {
       let li = document.querySelectorAll(".items > ul > li");
       for(let j = 0; j < li.length; j ++){
-        if(li[j].classList.contains((text[i].name).toLowerCase())){
+        if(li[j].classList.contains((text[i - 1].name).toLowerCase())){
           li[j].style.display = "block";
-          console.log(li[j].classList, (text[i].name).toLowerCase(), li[j].classList.contains((text[i].name).toLowerCase()))
+          console.log(li[j].classList, (text[i - 1].name).toLowerCase(), li[j].classList.contains((text[i - 1].name).toLowerCase()))
         } else {
           li[j].style.display = "none";
         }
@@ -130,6 +117,42 @@ options.forEach(option =>
       items[i].style = "display: block;";
     }
   });
+
+  //header
+  const fields = {};
+  for(let i = 0; i < text.length; i++){
+    if(fields[text[i].field]){
+      fields[text[i].field][parseInt(Object.keys(fields[text[i].field])[Object.keys(fields[text[i].field]).length - 1]) + 1] = text[i]
+    } else {
+      fields[text[i].field] = {}
+      fields[text[i].field][0] = text[i];
+    }
+  }
+  console.log(fields, text.length)
+  const header_field_ul = document.querySelector("header .inner> ul > li > .item > ul");
+  for(let i = 0; i < Object.keys(fields).length; i++){
+    let field_li = document.createElement("li");
+    header_field_ul.appendChild(field_li);
+    let h3 = document.createElement("h3");
+    console.log(Object.keys(fields)[i])
+    h3.innerText = Object.keys(fields)[i];
+    field_li.appendChild(h3);
+    let item_list = document.createElement("div");
+    item_list.setAttribute("class", "item-list");
+    field_li.appendChild(item_list);
+    let ul = document.createElement("ul");
+    item_list.appendChild(ul);
+    console.log(fields[[Object.keys(fields)[i]]][0])
+    for(let j = 0; typeof fields[[Object.keys(fields)[i]]][j] != 'undefined'; j++){
+      let category_li = document.createElement("li");
+      ul.appendChild(category_li);
+      let a = document.createElement("a");
+      a.setAttribute("href", `category/${fields[[Object.keys(fields)[i]]][j].name}`);
+      a.innerText = (fields[[Object.keys(fields)[i]]][j].name.replaceAll('_', ' '));
+      //console.log(fields[text[i].field])
+      category_li.appendChild(a)
+    }
+  }
 })();
 
 
@@ -166,10 +189,10 @@ btn_sort_views.addEventListener('click', async () => {
 
 const btn_sort_likes = document.querySelector("#sortChoice2");
 btn_sort_likes.addEventListener('click', async () => {
+  const active_category = document.querySelector("input.slide-toggle:checked");
   const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
   const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
-  console.log(text.article[0][0].views);
   let articles = [];
   let index = 0;
   for(let i = 0; typeof text.article[i] != 'undefined'; i++){
@@ -191,12 +214,14 @@ btn_sort_likes.addEventListener('click', async () => {
 
   let article_container = document.querySelectorAll(".items > ul > li")
   for(let i = 0; i < articles.length; i++){
-    article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
+    article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`;
+    console.log(article_container[i]);
   }
 })
 
 const btn_sort_category = document.querySelector("#sortChoice3");
 btn_sort_category.addEventListener('click', async () => {
+  const active_category = document.querySelector("input.slide-toggle:checked");
   const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
   const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
@@ -215,7 +240,3 @@ btn_sort_category.addEventListener('click', async () => {
     article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`
   }
 });
-
-const fields = ['software', 'hardware', 'algorithm', 'programming lnaguage', 'data structure', 'architectre', 'networking'];
-let field = fields[Math.floor(Math.random() * (fields.length))];
-

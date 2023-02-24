@@ -3,7 +3,6 @@
 <head>
   <title>CONNECTWITH</title>
   <%- include("./elements/head");%>
-  <link rel="stylesheet" href="css/elements/header.css">
   <link rel="stylesheet" href="css/main.css">
   <script defer src = "js/main.js"></script>
 </head>
@@ -78,8 +77,8 @@
         <div class="guideline">
           <div class="items"class="scrollbar" id="style-7" >
             <ul>
-              <% for(var i = 0; typeof article[i] != "undefined"; i++){%>
-                <% for(var j = 0; typeof article[i][j] != "undefined"; j++){%>
+              <% for(let i = 0; i < article.length; i++){%>
+                <% for(let j = 0; j < article[i].length; j++){%>
               <li class = <%=categories[i].Tables_in_automated_blog%>>
                 <a href=<%=article[i][j].path%>>
                   <div class="img_area">
@@ -102,6 +101,9 @@
           </div>
         </div>
       </div>
+      <footer>
+        <%- include("./elements/footer");%>
+      </footer>
     </div>
   </div>
 </body>

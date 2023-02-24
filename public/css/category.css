@@ -1,0 +1,8 @@
+@import url("elements/footer.css");
+@import url("elements/header.css");
+
+.main .section {
+  top: 0px;
+  position: absolute;
+  height:fit-content;
+}

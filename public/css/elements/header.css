@@ -5,6 +5,9 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color:#7777fd;
+}
 html {
   background-color: #fff;
 }
@@ -160,8 +163,7 @@ header {
     font-size: 15px;
   }
 
-  header > .inner > ul.pc > li:nth-child(2) {
-  }
+
   header > .inner > ul.pc > li:nth-child(1) button{
     padding-right: 19px;
     border: none;
@@ -200,7 +202,7 @@ header {
   header > .inner > ul.pc > li .item {
     position: absolute;
     background-color: #f5f5f5;
-    width: 150px;
+
     border-top: #D13639 3px solid;
     display: none;
     margin-top: 70px;
@@ -210,12 +212,22 @@ header {
     font-size: 14px;
   }
 
-  header > .inner > ul.pc > li .item li {
-    padding: 10px;
+  header > .inner > ul.pc > li .item > ul {
+    display: flex;
+    align-items: flex-start;
+    align-content: stretch;
+    max-width: 70vw;
+    flex-wrap: wrap;
   }
 
+  header > .inner > ul.pc > li .item > ul > li {
+    padding: 50px;
+  }
+
+  header > .inner > ul.pc > li .item > ul > li h3 {
+    font-size: 30px;
+  }
   header > .inner > ul.pc > li:nth-child(n+2):nth-child(-n+4):hover{
-    background-color:#fff;
     color: #7777fd;
   }
 
@@ -224,6 +236,13 @@ header {
     display: block;
   }
 
+  header > .inner > ul.pc > li .item-list li {
+    margin-top: 30px;
+  }
+
+  header > .inner > ul.pc > li .item-list li a:visited {
+    color: #7777fd;
+  }
   *{
   box-sizing: border-box;
   }

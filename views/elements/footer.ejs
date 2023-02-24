@@ -1,0 +1,39 @@
+<div class="inner">
+  <div class="news-letter">
+    <h4>FLOZABLE</h4>
+    <p>Join our newsletter for the latest updates.</p>
+    <form action="">
+      <input type="text">
+    </form>
+  </div>
+  <div class="categories">
+    <h4>Categories</h4>
+    <ul>
+      <% for(var i = 0; i < categories.length; i++){%>
+        <li>
+          <a href=""><%= categories[i].Tables_in_automated_blog.replaceAll("_", " ")%></a>
+        </li>
+      <%}%>
+    </ul>
+  </div>
+  <div class="companay">
+    <h4>Company</h4>
+    <ul>
+      <li>
+        <a href="">About</a>
+      </li>
+      <li>
+        <a href="">Privacy Policy</a>
+      </li>
+      <li>
+        <a href="">Terms & Conditions</a>
+      </li>
+      <li>
+        <a href="">Contact</a>
+      </li>
+    </ul>
+  </div>
+  <div class="github">
+    <a href="/">Github</a>
+  </div>
+</div>
