@@ -6,6 +6,8 @@
   <%- include("./elements/head");%>
     <link rel="stylesheet" href="../../css/article.css">
     <script defer src="../../js/article.js"></script>
+    <script defer src="../../js/footer.js"></script>
+    <script defer src="../../js/header.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
 
@@ -30,7 +32,7 @@
       <h2>Related Articles</h2>
       <div class="related" id="style-7">
         <div class="articles-wrapper">
-          <% for(var i=0; typeof related_articles[i] !="undefined" ; i++){%>
+          <% for(let i=0; i < related_articles.length ; i++){%>
             <div class="related_articles" id=<%=related_articles[i].post_id %>>
               <a href=<%=related_articles[i].title.replaceAll(' ', ' %20')%>>
                 <div class="img_area">

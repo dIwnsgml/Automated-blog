@@ -1,5 +1,5 @@
 (async () => {
-  const response = await fetch("/getinfo", {method: 'POST'});
+  const response = await fetch("/getCategories", {method: 'POST'});
   const text = await response.json();
   console.log(text)
     //header
