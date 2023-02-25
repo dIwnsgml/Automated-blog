@@ -95,8 +95,8 @@ Router.post('/category/create', async(req, res) => {
         }).catch(function (error) {
           console.error(error);
         }); 
-        new_category = new_category.data.choices[0].text.replaceAll(' ', '_');
-        new_category = new_category.replaceAll(/[^a-z A-Z 0-9 _]/gi, '');
+        new_category = new_category.data.choices[0].text.replace(/ /g, '_');
+        new_category = new_category.replace(/[^a-z A-Z 0-9 _]/gi, '');
         /* planning blog post part */
         console.log(`writing blog posts for ${new_category}`);
         let new_topics = await openai.createCompletion({
@@ -126,7 +126,7 @@ Router.post('/category/create', async(req, res) => {
             title: new_topics_arr[index].split('<---->')[0],
             contents: new_topics_arr[index].split('<---->')[1],
             text: new_text.data.choices[0].text,
-            path:('article/'+new_category+'/'+new_topics_arr[index].split('<---->')[0]).replaceAll(' ', "%20"),
+            path:('article/'+new_category+'/'+new_topics_arr[index].split('<---->')[0]).replace(/ /g, "%20"),
             img_url: img_url,
             field: field
           }

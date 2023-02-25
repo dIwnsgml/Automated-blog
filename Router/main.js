@@ -20,7 +20,7 @@ Router.get("/", async (req, res) => {
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
     for(let j = 0; typeof articles[i][j] != 'undefined'; j++){
       if(articles[i][j].contents){
-        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>");
+        articles[i][j].contents = articles[i][j].contents.replace(/;/g,"<br>");
       }
     }
     /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
@@ -46,7 +46,7 @@ Router.get("/", async (req, res) => {
             article[i][j] = rows[j];
             article[i][j].path = 'article/' + type + '/--'+ article[i][j].title;
             article[i][j].path = article[i][j].path.replace("/-- ", "/");
-            article[i][j].path = article[i][j].path.replaceAll(" ", "%20");
+            article[i][j].path = article[i][j].path.replace(" ", "%20");
             console.log(article[i][j].path)
           }
           callback(null, article)
@@ -106,7 +106,7 @@ Router.post('/getArticles', async (req, res) => {
     articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
 /*     for(let j = 0; j < articles[i].length; j++){
       if(articles[i][j].contents){
-        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>");
+        articles[i][j].contents = articles[i][j].contents.replace(/;/,"<br>");
       }
     } */
     /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
