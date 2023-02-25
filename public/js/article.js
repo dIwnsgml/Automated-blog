@@ -44,7 +44,7 @@ like_btn.addEventListener('click', (event) => {
   const articles_wrapper = document.querySelector(".articles-wrapper");
   for(let i = 0; i < related_articles.length; i++){
     articles_wrapper.innerHTML += `<div class='related_articles' id=${related_articles[i].post_id}>
-    <a href=${related_articles[i].title.replace(/ /g, ' %20')}>
+    <a href=../../${related_articles[i].path}>
       <div class="img_area">
         <img src=${related_articles[i].img_url} alt="">
       </div>
@@ -54,7 +54,7 @@ like_btn.addEventListener('click', (event) => {
         </h3>
       </div>
       <div class="explanation">
-        <h3>${related_articles[i].contents}</h3>
+        <h3>${related_articles[i].contents.replace(/;/g, "<br>")}</h3>
       </div>
       <div class='tags'>
         <p></p>
