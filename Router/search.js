@@ -1,92 +1,25 @@
 const express = require("express");
 const app = express();
-let Router = express.Router(); 
-/* const octokit = new Octokit({
-  auth: "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"
-});
+const Router = express.Router(); 
+const pool = require('../model/pool');
 
+Router.post("/", async(req, res) => {
+  const query = req.body.query;
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
 
-
-octokit.paginate(octokit.rest.search.repos, {
-  q: "#help-wanted",
-  per_page: 1,
-})
-  .then(issues => {
-    // issues is an array of all issue objects
-    console.log(issues)
-  })
- */
-
-
-
-  /* Router.get('/', function (req, res, next) {
-    res.render("search", {
-      githubapi: githubapi
-    })
-  }); */
-  /* req.session.error_msg = "";
-  
-  if (req.session.loggedin) {
-    res.render('index', {
-      button: "LOGOUT",
-      name: req.session.name,
-      path: "/account/logout",
-    });
-  } else {
-    res.render('index', {
-      button: "SIGN IN",
-      name: req.session.name,
-      path: "/account/login",
-    });
+  let articles = [];
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+    articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
   }
-});
-
-Router.get('/security', (req, res) => {
-  if (req.session.loggedin) {
-    res.render('security', {
-      button: "LOGOUT",
-      name: req.session.name,
-      path: "/account/logout",
-    });
-  } else {
-    res.render('security', {
-      button: "SIGN IN",
-      name: req.session.name,
-      path: "/account/login",
-    });
-  }
+  connection.release();
+  res.render('search', {article: articles, categories: tables, query: query})
 })
-
-Router.get('/privacy-notice', (req, res) => {
-  if (req.session.loggedin) {
-    res.render('privacy', {
-      button: "LOGOUT",
-      name: req.session.name,
-      path: "/account/logout",
-    });
-  } else {
-    res.render('privacy', {
-      button: "SIGN IN",
-      name: req.session.name,
-      path: "/account/login",
-    });
-  }
-})
-
-Router.get('/terms-of-service', (req, res) => {
-  if (req.session.loggedin) {
-    res.render('service', {
-      button: "LOGOUT",
-      name: req.session.name,
-      path: "/account/logout",
-    });
-  } else {
-    res.render('service', {
-      button: "SIGN IN",
-      name: req.session.name,
-      path: "/account/login",
-    });
-  } 
-});*/
 
 module.exports = Router;

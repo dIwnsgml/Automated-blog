@@ -9,9 +9,10 @@ const async = require("async");
 Router.get('/:category', async(req, res) => {
   const category = req.params.category
   const connection = await (await pool).getConnection();
-  const categories = await connection.query("SHOW TABLES");
+  let categories = await connection.query("SHOW TABLES");
+  categories = categories.filter(item => item.Tables_in_automated_blog !== 'category');
   const articles = await connection.query("SELECT * FROM ??", [category]);
-  res.render('category', {articles: articles, categories: categories})
+  res.render('category', {articles: articles, categories: categories, category: category})
   console.log(req.params.category)
 })
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>CONNECTWITH</title>
   <%- include("./elements/head");%>
-  <link rel="stylesheet" href="../../css/article.css">
-  <script defer src = "../../js/header.js"></script>
-  <script defer src = "../../js/article.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/article.css">
+    <script defer src="../../js/article.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <%- include("./elements/header");%>
   <div class="main">
@@ -17,24 +18,28 @@
           <h2>Contents</h2>
           <h3><%- article.contents%></h3>
         </div>
-        <%- article.text%>
+        <div class="text">
+          <%- article.text%>
+        </div>
       </div>
     </div>
     <div class="likes">
-      <button id = "btn_likes"><i class="fa-regular fa-heart"></i> Like <%= article.likes %></button>
+      <button id="btn_likes"><i class="fa-regular fa-heart"></i> Like <%= article.likes %></button>
     </div>
     <div class="related-wrapper">
       <h2>Related Articles</h2>
       <div class="related" id="style-7">
         <div class="articles-wrapper">
-          <% for(var i = 0; typeof related_articles[i] != "undefined"; i++){%>
-            <div class="related_articles" id = <%= related_articles[i].post_id %>>
-              <a href=<%=related_articles[i].title.replaceAll(' ', '%20')%>>
+          <% for(var i=0; typeof related_articles[i] !="undefined" ; i++){%>
+            <div class="related_articles" id=<%=related_articles[i].post_id %>>
+              <a href=<%=related_articles[i].title.replaceAll(' ', ' %20')%>>
                 <div class="img_area">
-                  <img src=<%= related_articles[i].img_url%> alt="">
+                  <img src=<%=related_articles[i].img_url%> alt="">
                 </div>
                 <div class="topic">
-                  <h3><%= related_articles[i].title%></h3>
+                  <h3>
+                    <%= related_articles[i].title%>
+                  </h3>
                 </div>
                 <div class="explanation">
                   <h3><%- related_articles[i].contents%></h3>
@@ -48,7 +53,10 @@
         </div>
       </div>
     </div>
-
+    <footer>
+      <%- include("./elements/footer");%>
+    </footer>
   </div>
 </body>
+
 </html>

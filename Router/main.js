@@ -91,6 +91,94 @@ Router.post('/getinfo', async (req, res) => {
   res.send(tables);  
 })
 
+Router.post('/getArticles', async (req, res) => {
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
+
+  let articles = [];
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+    articles[i] = await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog]);
+/*     for(let j = 0; j < articles[i].length; j++){
+      if(articles[i][j].contents){
+        articles[i][j].contents = articles[i][j].contents.replaceAll(';',"<br>");
+      }
+    } */
+    /* await connection.query("SELECT * FROM ??", [tables[i].Tables_in_automated_blog], (err, rows) => {
+      for(let j = 0; typeof rows[j] != 'undefined'; j++){
+        articles[i][j] = rows[j];
+        articles[i][j].path = 'article'+''
+      }
+    }); */
+  }
+  connection.release();
+  res.send(articles);
+})
+
+Router.get('/about-us', async(req, res) => {
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+  }
+  connection.release();
+  res.render("about", {categories: tables});
+})
+
+Router.get('/privacy-policy', async(req, res) => {
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+  }
+  connection.release();
+  res.render("privacy-policy",{categories: tables});
+})
+
+Router.get('/terms-of-use', async(req, res) => {
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+  }
+  connection.release();
+  res.render("terms-of-use", {categories: tables});
+})
+
+Router.get('/contact', async(req, res) => {
+  const connection = await (await pool).getConnection()
+  let tables = await connection.query("SHOW TABLES");
+  for(let i = 0; i < tables.length; i++){
+    //remove category table
+    if(tables[i].Tables_in_automated_blog == "category"){
+      tables.splice(i, 1);
+      i -= 1;
+      continue
+    }
+  }
+  connection.release();
+  res.render("contact", {categories: tables});
+})
 Router.get('/robots.txt', (req, res) => {
   res.render("robots.txt");
 });

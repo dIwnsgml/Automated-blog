@@ -1,0 +1,100 @@
+@import url("elements/footer.css");
+@import url("elements/header.css");
+
+@keyframes tright {
+  from {
+    transform: translate(-200px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes tleft {
+  from {
+    transform: translate(200px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes blur {
+  to {
+    backdrop-filter: blur(8px); 
+  }
+}
+
+.swiper-slide{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.swiper-slide-active{
+  z-index: 10;
+}
+
+.swiper-slide img{
+  height: 100vh;
+  object-fit: cover;
+  object-position: center; /* Center the image within the element */
+  width: auto;
+  position: absolute;
+}
+
+.swiper-pagination {
+  z-index: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fff;
+}
+
+.main .top {
+  overflow: hidden;
+  background-image: url("/img/slider/logo.png");
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.main .top .blur {
+  width: 100vw;
+  height: 100vh;
+  animation: blur 2s alternate forwards;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.main .top .text {
+  text-align: center;
+  width: 50%;
+}
+
+.main .top .text .first{
+  animation: tright 1.1s alternate;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.main .top .text .second{
+  opacity: 0;
+  animation: tleft 1.1s alternate forwards;
+  animation-delay: 1.5s;
+  font-size: 30px;
+  color: black
+}
+
+.main .explanation{
+  margin-top: 100px;
+  width: 50vw;
+  transform: translate(25vw);
+  font-size: 30px;
+}
