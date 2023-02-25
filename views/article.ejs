@@ -18,40 +18,18 @@
       <div class="article">
         <div class="contents">
           <h2>Contents</h2>
-          <h3><%- article.contents%></h3>
         </div>
         <div class="text">
-          <%- article.text%>
         </div>
       </div>
     </div>
     <div class="likes">
-      <button id="btn_likes"><i class="fa-regular fa-heart"></i> Like <%= article.likes %></button>
+      <button id="btn_likes"></button>
     </div>
     <div class="related-wrapper">
       <h2>Related Articles</h2>
       <div class="related" id="style-7">
         <div class="articles-wrapper">
-          <% for(let i=0; i < related_articles.length ; i++){%>
-            <div class="related_articles" id=<%=related_articles[i].post_id %>>
-              <a href=<%=related_articles[i].title.replaceAll(' ', ' %20')%>>
-                <div class="img_area">
-                  <img src=<%=related_articles[i].img_url%> alt="">
-                </div>
-                <div class="topic">
-                  <h3>
-                    <%= related_articles[i].title%>
-                  </h3>
-                </div>
-                <div class="explanation">
-                  <h3><%- related_articles[i].contents%></h3>
-                </div>
-                <div class="tags">
-                  <p></p>
-                </div>
-              </a>
-            </div>
-          <%}%>
         </div>
       </div>
     </div>

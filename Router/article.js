@@ -3,23 +3,26 @@ let Router = express.Router();
 const info = require("../config/info.json");
 const pool = require('../model/pool');
 
-
-Router.get('/:category/:title', async (req, res) => {
+Router.post('/getArticle/:category/:title', async(req, res) => {
   let category = req.params.category;
   let title = req.params.title;
-  console.log(category, title)
+  console.log(category, 'sdfff', title)
   const connection = await (await pool).getConnection();
-  //add view +=1 
-  connection.query("UPDATE category set views=views+1 WHERE name = ?", [category]);
-  connection.query("UPDATE ?? set views=views+1 WHERE title = ?", [category, title]);
-  const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category,title]);
-  const related_articles = await connection.query("SELECT * FROM ??", [category]);
-  article[0].contents = article[0].contents.replace(/;/g, "<br>");
-  for(let i = 0; typeof related_articles[i] != 'undefined'; i++){
-    related_articles[i].contents = related_articles[i].contents.replace(/;/g, "<br>");
-  }
+  const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category, title]);
   connection.release();
-  res.render('article', {article: article[0], related_articles: related_articles, category: category});
+  res.send(article[0]);
+})
+
+Router.post('/getRelatedArticles/:category', async(req, res) => {
+  let category = req.params.category;
+  const connection = await (await pool).getConnection();
+  const articles = await connection.query("SELECT * FROM ??", [category]);
+  connection.release();
+  res.send(articles);
+})
+
+Router.get('/:category/:title', async (req, res) => {
+  res.render('article');
 })
 
 Router.post('/:category/:title/:like', async(req, res) => {
