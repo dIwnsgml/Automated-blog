@@ -45,7 +45,7 @@ options.forEach(option =>
 //For category slider
 (async () => {
   const category_slider = document.querySelector(".slidemenu");
-  const response = await fetch("/getinfo", {method: 'POST'});
+  const response = await fetch("/getCategories", {method: 'POST'});
   const text = await response.json();
   text.sort((a, b) => {
     if(a.likes * 3 + a.views * 7 > b.likes * 3 + b.views * 7) {
@@ -78,9 +78,8 @@ options.forEach(option =>
     label.addEventListener('click', () => {
       let li = document.querySelectorAll(".items > ul > li");
       for(let j = 0; j < li.length; j ++){
-        if(li[j].classList.contains((text[i - 1].name).toLowerCase())){
+        if(li[j].classList.contains((text[i - 1].name))){
           li[j].style.display = "block";
-          console.log(li[j].classList, (text[i - 1].name).toLowerCase(), li[j].classList.contains((text[i - 1].name).toLowerCase()))
         } else {
           li[j].style.display = "none";
         }
@@ -105,4 +104,42 @@ options.forEach(option =>
       items[i].style = "display: block;";
     }
   });
+})();
+
+
+(async () => {
+  const response = await fetch("/getArticles", {method: 'POST'});
+  const response2 = await fetch("/getCategories", {method: 'POST'});
+  const articles = await response.json();
+  const categories = await response2.json();
+  console.log(articles)
+  const articles_wrapper = document.querySelector("ul.articles_wrapper");
+  for(let i = 0; i < articles.length; i++){
+    for(let j = 0; j < articles[i].length; j++){
+      const li = document.createElement("li");
+      li.setAttribute("class", categories[i].name)
+      articles_wrapper.appendChild(li); 
+      const a = document.createElement("a");
+      a.setAttribute("href", articles[i][j].path)
+      li.appendChild(a);
+      const div_a_img = document.createElement("div");
+      div_a_img.setAttribute("class", "img_area");
+      a.appendChild(div_a_img);
+      const img = document.createElement("img");
+      img.setAttribute("src", articles[i][j].img_url);
+      div_a_img.appendChild(img);
+      const div_a_title = document.createElement("div");
+      div_a_title.setAttribute("class", "topic");
+      a.appendChild(div_a_title);
+      const h3 = document.createElement("h3");
+      h3.innerHTML = `${articles[i][j].title} <i class="fa-regular fa-heart"></i> ${articles[i][j].likes}`;
+      div_a_title.appendChild(h3);
+      const div_a_conetens = document.createElement("div");
+      div_a_conetens.setAttribute("class", "explanation");
+      a.appendChild(div_a_conetens);
+      const h5 = document.createElement("h3");
+      h5.innerText = articles[i][j].contents.replaceAll(';', '');
+      div_a_conetens.appendChild(h5);
+    }
+  }
 })();

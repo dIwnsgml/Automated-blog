@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../css/category.css">
   <script defer src = "../../js/sort.js"></script>
   <script defer src = "../../js/header.js"></script>
+  <script defer src = "../../js/footer.js"></script>
+  <script defer src = "../../js/category.js"></script>
 </head>
 <body>
   <%- include("./elements/header");%>
@@ -31,25 +33,8 @@
             </div>
           </div>
           <div class="items"class="scrollbar" id="style-7" >
-            <ul>
-              <% for(let i = 0; i < articles.length; i++){%>
-                <li class = <%= category.replaceAll("_", " ")%>>
-                  <a href=../../<%=articles[i].path%>>
-                    <div class="img_area">
-                      <img src=<%= articles[i].img_url%> alt="">
-                    </div>
-                    <div class="topic">
-                      <h3><%= articles[i].title%> <i class="fa-regular fa-heart"></i> <%= articles[i].likes%></h3>
-                    </div>
-                    <div class="explanation">
-                      <h3><%- articles[i].contents%></h3>
-                    </div>
-                    <div class="tags">
-                      <p></p>
-                    </div>
-                  </a>
-                </li>
-              <%}%>
+            <ul class = "articles_wrapper">
+
             </ul>
           </div>
         </div>

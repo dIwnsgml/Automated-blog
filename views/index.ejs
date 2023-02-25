@@ -7,6 +7,7 @@
   <script defer src = "js/main.js"></script>
   <script defer src = "js/header.js"></script>
   <script defer src = "js/sort.js"></script>
+  <script defer src = "js/footer.js"></script>
 </head>
 <body>
   <%- include("./elements/header");%>
@@ -78,27 +79,8 @@
       <div class="inner">
         <div class="guideline">
           <div class="items"class="scrollbar" id="style-7" >
-            <ul>
-              <% for(let i = 0; i < article.length; i++){%>
-                <% for(let j = 0; j < article[i].length; j++){%>
-              <li class = <%=categories[i].Tables_in_automated_blog%>>
-                <a href=<%=article[i][j].path%>>
-                  <div class="img_area">
-                    <img src=<%= article[i][j].img_url%> alt="">
-                  </div>
-                  <div class="topic">
-                    <h3><%= article[i][j].title%> <i class="fa-regular fa-heart"></i> <%= article[i][j].likes%></h3>
-                  </div>
-                  <div class="explanation">
-                    <h3><%- article[i][j].contents%></h3>
-                  </div>
-                  <div class="tags">
-                    <p></p>
-                  </div>
-                </a>
-              </li>
-              <%}%>
-              <%}%>
+            <ul class = "articles_wrapper">
+
             </ul>
           </div>
         </div>

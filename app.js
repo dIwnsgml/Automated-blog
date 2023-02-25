@@ -6,7 +6,6 @@ const createError = require("http-errors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-//const expressValidator = require('express-validator');
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const connection = require("./model/db");
@@ -78,8 +77,6 @@ app.use(session({
   },
   //store: new fileStore(),
 }))
-
-//app.use(expressValidator());
 
 app.use('/', mainRouter);
 app.use("/search", searchRouter);
