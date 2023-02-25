@@ -243,6 +243,10 @@ header {
   header > .inner > ul.pc > li .item-list li a:visited {
     color: #7777fd;
   }
+
+  header > .inner > ul.pc > li .page > ul > li {
+    padding: 10px 30px 10px 30px;
+  }
   *{
   box-sizing: border-box;
   }

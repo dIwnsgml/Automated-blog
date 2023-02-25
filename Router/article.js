@@ -29,7 +29,7 @@ Router.get('/:category/:title', async (req, res) => {
     related_articles[i].contents = related_articles[i].contents.replaceAll(";", "<br>");
   }
   connection.release();
-  res.render('article', {article: article[0], related_articles: related_articles, category: category});
+  res.render('article', {article: article[0], related_articles: related_articles, category: category, categories: categories});
 })
 
 Router.post('/:category/:title/:like', async(req, res) => {

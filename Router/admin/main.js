@@ -6,12 +6,11 @@ const app = express();
 const path = require("path");
 Router.get('/', (req, res) => {
   if(req.session.loggedin){
-    res.render("admin")
+    res.render("admin/main")
   } else {
     res.render("login")
   }
   console.log(req.session.loggedin)
-  res.render('admin/main');
 })
 
 const manageRouter = require("./manage");

@@ -15,6 +15,10 @@ footer a:visited{
   color: #fff;
 }
 
+footer a{
+  color: #fff;
+}
+
 footer > .inner{
   width: 100%;
   top: 0px;

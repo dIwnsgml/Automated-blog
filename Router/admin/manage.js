@@ -5,36 +5,29 @@ const info = require("../../config/info.json")
 const { Configuration, OpenAIApi } = require("openai");
 const axios = require("axios");
 
-/* const options = {
-  method: 'GET',
-  url: 'https://www.instagram.com/' + 'account4socialn' + '/following',
-  responseType: 'html',
-  params: {session_key: '<REQUIRED>'},
-  headers: {
-  }
-}; */
-/* connection.query("SELECT * FROM mongodb" ,(err, rows) => {
-  console.log(rows[0].text)
-}) */
+
 Router.get('/article', async(req, res) => {
+  if(req.session.loggedin != true){
+    res.redirect('/');
+    return 0
+  }
   const connection = await (await pool).getConnection()
-  /* if(req.session.loggedin){
+  if(req.session.loggedin){
     res.render("admin")
   } else {
     res.render("login")
   }
-  console.log(req.session.loggedin) */
+  console.log(req.session.loggedin)
   res.render('admin/manage/article');
 })
 
 Router.get('/category', async(req, res) => {
-  const connection = await (await pool).getConnection()
-  /* if(req.session.loggedin){
-    res.render("admin")
-  } else {
-    res.render("login")
+  if(req.session.loggedin != true){
+    res.redirect('/');
+    return 0
   }
-  console.log(req.session.loggedin) */
+  const connection = await (await pool).getConnection()
+  console.log(req.session.loggedin)
   connection.query('SELECT * FROM category', (err, rows) => {
     var categories = '';
     let index = 0;
@@ -51,13 +44,12 @@ Router.get('/category', async(req, res) => {
 })
 
 Router.post('/category/create', async(req, res) => {
-  const connection = await (await pool).getConnection()
-  /* if(req.session.loggedin){
-    res.render("admin")
-  } else {
-    res.render("login")
+  if(req.session.loggedin != true){
+    res.redirect('/');
+    return 0
   }
-  console.log(req.session.loggedin) */
+  const connection = await (await pool).getConnection()
+  console.log(req.session.loggedin)
   /* prompt should generate exept lang stored in database */
   connection.query('SELECT * FROM category', (err, rows) => {
     var categories = '';
@@ -82,7 +74,7 @@ Router.post('/category/create', async(req, res) => {
         
         let new_category = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Think one thing to talk about ${field} that is not in this list (${categories}). (only say the name of the concepts without explanation and periods).`,
+          prompt: `Think one thing to talk about ${field} that is not in this list (${categories}). (only say the name without explanation and periods).`,
           max_tokens: 15,
           temperature: 1,
         });
@@ -109,7 +101,7 @@ Router.post('/category/create', async(req, res) => {
         console.log(`writing blog posts for ${new_category}`);
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only use A-Z for title of the ppost and don't put numbers. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
+          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only use A-Z for title of the ppost and don't put numbers. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents not end of the title. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
           max_tokens: 1000,
           temperature: 0,
         });

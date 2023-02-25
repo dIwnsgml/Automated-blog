@@ -11,7 +11,7 @@
     <ul>
       <% for(var i = 0; i < categories.length; i++){%>
         <li>
-          <a href=""><%= categories[i].Tables_in_automated_blog.replaceAll("_", " ")%></a>
+          <a href=../category/<%= categories[i].Tables_in_automated_blog%>><%= categories[i].Tables_in_automated_blog.replaceAll("_", " ")%></a>
         </li>
       <%}%>
     </ul>
@@ -20,20 +20,20 @@
     <h4>Company</h4>
     <ul>
       <li>
-        <a href="">About</a>
+        <a href="/about-us">About</a>
       </li>
       <li>
-        <a href="">Privacy Policy</a>
+        <a href="/privacy-policy">Privacy Policy</a>
       </li>
       <li>
-        <a href="">Terms & Conditions</a>
+        <a href="/terms-of-use">Terms & Conditions</a>
       </li>
       <li>
-        <a href="">Contact</a>
+        <a href="/contact">Contact</a>
       </li>
     </ul>
   </div>
   <div class="github">
-    <a href="/">Github</a>
+    <a href="https://github.com/dIwnsgml/Automated-blog">Github</a>
   </div>
 </div>
