@@ -67,7 +67,7 @@ Router.post('/category/create', async(req, res) => {
       const openai = new OpenAIApi(configuration);
       
       try {
-        const fields = ['software', 'hardware', 'algorithm', 'programming language', 'data structure', 'computer architectre', 'networking'];
+        const fields = ['software', 'hardware', 'algorithm', 'programming language', 'data structure', 'computer architecture', 'networking'];
         let field = fields[Math.floor(Math.random() * (fields.length))];
         console.log(field);
 
@@ -101,7 +101,7 @@ Router.post('/category/create', async(req, res) => {
         console.log(`writing blog posts for ${new_category}`);
         let new_topics = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only use A-Z for title of the ppost and don't put numbers. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents not end of the title. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
+          prompt: `Plan between 20 to 30 blog posts about ${new_category}. Only use A-Z for title of the post and don't put numbers. Only print each post's title and its contents. For title, you can use anything that you want that is closely related to the ${new_category} such as dev environment setting. Don't put anything in front of the title such as numbers. Try to divide one information into as many posts as possible instead of putting many contents in one article. ex) instead of putting variables, data types, operators, control flow, loops, functions in one post, put them into individual posts. Rule: print only titles and list-up the contents. Add "-" at the start of each contents, and add ";" at the end of each contents not the end of the title. At the start of each titles, add ";%". Divide the area of title and contents by adding "<---->".`,
           max_tokens: 1000,
           temperature: 0,
         });
