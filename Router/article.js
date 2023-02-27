@@ -22,7 +22,9 @@ Router.post('/getRelatedArticles/:category', async(req, res) => {
 })
 
 Router.get('/:category/:title', async (req, res) => {
-  res.render('article');
+  const category = req.params.category;
+  const title = req.params.title;
+  res.render('article', {category: category, title: title});
 })
 
 Router.post('/:category/:title/:like', async(req, res) => {
