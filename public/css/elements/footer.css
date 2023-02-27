@@ -37,10 +37,8 @@ footer > .inner > div h4{
   font-size: 30px;
 }
 
-footer > .inner > .categories {
-  overflow-y: hidden;
-  max-height: 300px;
-}
+/* footer > .inner > .categories {
+} */
 footer > .inner > .categories ul li{
   font-size: 20px;
 }
