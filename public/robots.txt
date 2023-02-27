@@ -7,4 +7,4 @@ Allow: /terms-of-use/
 Allow: /category
 Allow: /ads.txt
 Disallow: /admin
-Disallow: /search
+Disallow: /search 
