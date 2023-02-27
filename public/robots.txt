@@ -1,0 +1,10 @@
+Sitemap: https://flozable.com/sitemap.xml
+User-agent: *
+Allow: /
+Allow: /article
+Allow: /privacy-policy/
+Allow: /terms-of-use/
+Allow: /category
+Allow: /ads.txt
+Disallow: /admin
+Disallow: /search
