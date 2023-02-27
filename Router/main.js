@@ -12,6 +12,7 @@ Router.get("/", async (req, res) => {
 Router.post("/subscribe/:email", async (req, res) => {
   const connection = await (await pool).getConnection();
   const email = req.params.email;
+  console.log(email)
   let subscibe = await connection.query("INSERT INTO subscribers set ?", [{email: email}])
 })
 
