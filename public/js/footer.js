@@ -11,3 +11,10 @@
     li.appendChild(a)
   }
 })();
+
+document.querySelector('.submit-email').addEventListener('mousedown', (e) => {
+  e.preventDefault();
+  document.querySelector('.subscription').classList.add('done');
+  const email = document.querySelector("input.add-email").value;
+  fetch(`/subscribe/${email}`, {method: 'post'});
+});
