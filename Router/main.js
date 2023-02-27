@@ -9,6 +9,12 @@ Router.get("/", async (req, res) => {
   res.render('index', {})
 })
 
+Router.post("/subscribe/:email", async (req, res) => {
+  const connection = await (await pool).getConnection();
+  const email = req.params.email;
+  let subscibe = await connection.query("INSERT INTO subscribers set ?", [{email: email}])
+})
+
 Router.post('/sort/:category', async (req, res) => {
   const connection = await (await pool).getConnection();
   let category = req.params.category;

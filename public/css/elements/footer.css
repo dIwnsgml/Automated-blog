@@ -37,12 +37,6 @@ footer > .inner > div h4{
   font-size: 30px;
 }
 
-footer > .inner > .news-letter input{
-  margin-top: 30px;
-  width: 250px;
-  height: 43px;
-}
-
 footer > .inner > .categories {
   overflow-y: hidden;
   max-height: 300px;
@@ -53,4 +47,91 @@ footer > .inner > .categories ul li{
 
 footer > .inner > .github a{
   font-size: 33px;
+}
+
+footer .email-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .email-content {
+  width: 360px;
+  height: 40px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, .2);
+  border-radius: 60px;
+  overflow: hidden;
+}
+
+footer .subscription {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+footer .subscription .add-email{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 20px;
+}
+
+footer .subscription .submit-email {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: calc(100% - 2px);
+  width: 100px;
+  border: none;
+  border-radius: 60px;
+  outline: none;
+  margin: 1px;
+  padding: 0 20px;
+  cursor: pointer;
+  background: #4ABEBB;
+  color: #FFFFFF;
+  transition: width .35s ease-in-out,
+    background .35s ease-in-out;
+}
+
+footer .subscription.done .submit-email {
+  width: calc(100% - 2px);
+  background: #C0E02E;
+}
+
+footer .subscription .submit-email .before-submit,
+footer .subscription .submit-email .after-submit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 38px;
+  transition: visibility .35s ease-in-out,
+    opacity .35s ease-in-out;
+}
+
+footer .subscription.done .submit-email .before-submit,
+footer .subscription:not(.done) .submit-email .after-submit {
+  visibility: hidden;
+  opacity: 0;
+}
+
+footer .subscription .submit-email .after-submit {
+  transition-delay: .35s;
+}
+
+footer .subscription:not(.done) .submit-email .before-submit,
+footer .subscription.done .submit-email .after-submit {
+  visibility: visible;
+  opacity: 1;
 }

@@ -95,17 +95,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  // error for local
-  if(secret.place != 'dev'){
-    err.message = {}
-    res.render('error');
-  }
-  /* res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {}; */
-
-  // err
-  res.status(err.status || 500);
-  res.render(err.message);
+  console.log(err.message, err.status)
 });
 
 server.listen(port, secret.address, () => {
