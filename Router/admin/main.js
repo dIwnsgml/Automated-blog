@@ -1,6 +1,5 @@
 const express = require("express");
 const Router = express.Router();
-const connection = require('../../model/db');
 const info = require("../../config/info.json");
 const app = express();
 const path = require("path");

@@ -9,29 +9,33 @@ const DOMAIN = 'flozable.com';
 const formData = require('form-data');
 const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(formData);
-const client = mailgun.client({username: 'api', key: API_KEY});
+const client = mailgun.client({username: 'admin', key: API_KEY});
+const conn = require('../../model/db');
 
-(async() => {
-  const connection = await (await pool).getConnection()
-  connection.query("SELECT * FROM subscribers", (rows) => {
-    for(let i = 0; i < rows.length; i++){
-      const messageData = {
-        from: 'New Category generated! <notifcation@flozable.com>',
-        to: rows[i].email,
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomeness!'
-      };
-      
-      client.messages.create(DOMAIN, messageData)
-       .then((res) => {
-         console.log(res);
-       })
-       .catch((err) => {
-         console.error(err);
-       });
-    }
-  })
-})()
+conn.query("SELECT * FROM subscribers", (err,rows) => {
+  for(let i = 0; i < rows.length; i++){
+    let category = 'java'
+    let articles = [{name: '1', contents: 'sdfsdfsdf',name: '1', contents: 'sdfsdfsdf',name: '1', contents: 'sdfsdfsdf'}]
+    const messageData = {
+      from: 'New Category generated! <notifcation@flozable.com>',
+      to: rows[i].email,
+      subject: 'Hello',
+      template:'category_notify',
+      't:variables': JSON.stringify({ // be sure to stringify your payload
+        category,
+        articles,
+      })
+    };
+    
+    client.messages.create(DOMAIN, messageData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+})
 Router.get('/article', async(req, res) => {
   if(req.session.loggedin != true){
     res.redirect('/');
