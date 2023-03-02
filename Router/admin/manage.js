@@ -22,8 +22,18 @@ conn.query("SELECT * FROM subscribers", (err,rows) => {
       subject: 'Hello',
       template:'category_notify',
       't:variables': JSON.stringify({ // be sure to stringify your payload
-        category,
-        articles,
+        "category": "test_category",
+        "articles": [
+            {
+                "english": "test_english",
+                "spanish": "test_spanish",
+                "french": "test_french",
+                "item": {
+                    "image": "test_image"
+                }
+            }
+        ],
+        "items": [0, 1, 2]
       })
     };
     
