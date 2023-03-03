@@ -79,7 +79,6 @@ a:visited {
 
 .main .top {
   overflow: hidden;
-  background-image: url("/img/slider/logo.png");
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
