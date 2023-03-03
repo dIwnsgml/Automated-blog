@@ -84,14 +84,7 @@ app.use("/admin", adminRouter);
 app.use("/category", categoryRouter);
 app.use("/article", articleRouter);
 
-app.get('*',function(req,res){
-  res.redirect('/');
-});
 
-// catch 404
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function (err, req, res, next) {
