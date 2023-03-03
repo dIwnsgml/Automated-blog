@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title><%= category%> | <%= title%></title>
+  <title><%= category.replace(/_/, ' ')%> | <%= title%></title>
   <%- include("./elements/head");%>
     <link rel="stylesheet" href="../../css/article.css">
     <script defer src="../../js/article.js"></script>

@@ -12,7 +12,6 @@ btn_sort_views.addEventListener('click', async () => {
       index += 1;
     }
   }
-  console.log(articles[0])
   articles.sort((a, b) => {
     if(a.views > b.views){
       return -1;
@@ -43,7 +42,6 @@ btn_sort_likes.addEventListener('click', async () => {
       index += 1;
     }
   }
-  console.log(articles[0])
   articles.sort((a, b) => {
     if(a.likes > b.likes){
       return -1;
@@ -57,7 +55,7 @@ btn_sort_likes.addEventListener('click', async () => {
   let article_container = document.querySelectorAll(".items > ul > li")
   for(let i = 0; i < articles.length; i++){
     article_container[i].innerHTML = `<a href=${articles[i].path}><div class="img_area"><img src = ${articles[i].img_url} alt = ""></div><div class = "topic"><h3>${articles[i].title} <i class="fa-regular fa-heart"></i> ${articles[i].likes}</h3></div><div class="explanation"><h3>${articles[i].contents.replaceAll(';',"<br>")}</h3></div><div class="tags"><p></p></div></a>`;
-    console.log(article_container[i]);
+    
   }
 })
 
@@ -67,7 +65,7 @@ btn_sort_category.addEventListener('click', async () => {
   const active_category_name = document.querySelector(`label.${active_category.id}`).className.split(' ')[1];
   const response = await fetch(`/sort/${active_category_name}`, {method: 'POST'});
   const text = await response.json();
-  console.log(text.article[0][0].views);
+
   let articles = [];
   let index = 0;
   for(let i = 0; typeof text.article[i] != 'undefined'; i++){

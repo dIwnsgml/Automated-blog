@@ -2,14 +2,12 @@
 (async () => {
   const response = await fetch("/getArticles", {method: 'POST'});
   const text = await response.json();
-  console.log(text)
   const articles_wrapper = document.querySelector("ul.articles_wrapper");
   const query = document.querySelector("#query").innerText;
-  console.log(query)
+
   for(let i = 0; i < text.length; i++){
     for(let j = 0; j < text[i].length; j++){
       if((text[i][j].title.toLowerCase().includes(query) == true) || (text[i][j].contents.toLowerCase().includes(query) == true)){
-        console.log(text[i][j].title);
         const li = document.createElement("li");
         articles_wrapper.appendChild(li); 
         const a = document.createElement("a");
