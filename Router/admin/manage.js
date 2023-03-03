@@ -12,40 +12,6 @@ const mailgun = new Mailgun(formData);
 const client = mailgun.client({username: 'admin', key: API_KEY});
 const conn = require('../../model/db');
 
-conn.query("SELECT * FROM subscribers", (err,rows) => {
-  for(let i = 0; i < rows.length; i++){
-    let category = 'java'
-    let articles = [{name: '1', contents: 'sdfsdfsdf',name: '1', contents: 'sdfsdfsdf',name: '1', contents: 'sdfsdfsdf'}]
-    const messageData = {
-      from: 'New Category generated! <notifcation@flozable.com>',
-      to: rows[i].email,
-      subject: 'Hello',
-      template:'category_notify',
-      't:variables': JSON.stringify({ // be sure to stringify your payload
-        "category": "test_category",
-        "articles": [
-            {
-                "english": "test_english",
-                "spanish": "test_spanish",
-                "french": "test_french",
-                "item": {
-                    "image": "test_image"
-                }
-            }
-        ],
-        "items": [0, 1, 2]
-      })
-    };
-    
-    client.messages.create(DOMAIN, messageData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-})
 Router.get('/article', async(req, res) => {
   if(req.session.loggedin != true){
     res.redirect('/');
@@ -92,23 +58,6 @@ Router.post('/category/create', async(req, res) => {
   console.log(req.session.loggedin)
 
   setInterval((async() => {
-    const subscribers = await connection.query("SELECT * FROM subscribers");
-    for(let i = 0; i < subscribers.length; i++){
-      const messageData = {
-        from: 'New Category generated! <notifcation@flozable.com>',
-        to: subscribers.email,
-        subject: 'Hello',
-        text: 'Testing some Mailgun awesomeness!'
-      };
-      
-      client.messages.create(DOMAIN, messageData)
-       .then((res) => {
-         console.log(res);
-       })
-       .catch((err) => {
-         console.error(err);
-       });
-    }
     /* prompt should generate exept lang stored in database */
     connection.query('SELECT * FROM category', (err, rows) => {
       var categories = '';
@@ -195,6 +144,37 @@ Router.post('/category/create', async(req, res) => {
           }
 
           console.log("complete!");
+          conn.query("SELECT * FROM subscribers", (err,rows) => {
+            for(let i = 0; i < rows.length; i++){
+              const messageData = {
+                from: 'FLOZABLE <notifcation@flozable.com>',
+                to: rows[i].email,
+                subject: 'New Category generated!',
+                template:'category_notify',
+                't:variables': JSON.stringify({ // be sure to stringify your payload
+                  "category": new_category.replace(/_/, ' '),
+                  "articles": [
+                      {
+                          "english": "test_english",
+                          "spanish": "test_spanish",
+                          "french": "test_french",
+                          "item": {
+                              "image": "test_image"
+                          }
+                      }
+                  ],
+                })
+              };
+              
+              client.messages.create(DOMAIN, messageData)
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          })
         } catch (error) {
           if (error.response) {
             console.log(error.response.status);
