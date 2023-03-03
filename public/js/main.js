@@ -112,7 +112,6 @@ options.forEach(option =>
   const response2 = await fetch("/getCategories", {method: 'POST'});
   const articles = await response.json();
   const categories = await response2.json();
-  console.log(articles)
   const articles_wrapper = document.querySelector("ul.articles_wrapper");
   for(let i = 0; i < articles.length; i++){
     for(let j = 0; j < articles[i].length; j++){

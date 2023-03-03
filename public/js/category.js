@@ -3,7 +3,6 @@
   const response = await fetch(`/getArticlesforCategory/${category}`, {method: 'POST'});
   const articles = await response.json();
   
-  console.log(articles)
   const articles_wrapper = document.querySelector("ul.articles_wrapper");
   for(let i = 0; i < articles.length; i++){
     const li = document.createElement("li");

@@ -1,29 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-		<!--	created with www.mysitemapgenerator.com	-->
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-	<loc>https://flozable.com/</loc>
-	<lastmod>2023-02-27T06:45:32+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://flozable.com/about-us</loc>
-	<lastmod>2023-02-27T06:45:32+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://flozable.com/privacy-policy</loc>
-	<lastmod>2023-02-27T06:45:32+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://flozable.com/terms-of-use</loc>
-	<lastmod>2023-02-27T06:45:32+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>https://flozable.com/contact</loc>
-	<lastmod>2023-02-27T06:45:32+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
+<!--	created with www.mysitemapgenerator.com	-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://flozable.com/</loc>
+    <lastmod>2023-02-27T06:45:32+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/about-us</loc>
+    <lastmod>2023-02-27T06:45:32+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/privacy-policy</loc>
+    <lastmod>2023-02-27T06:45:32+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/terms-of-use</loc>
+    <lastmod>2023-02-27T06:45:32+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/contact</loc>
+    <lastmod>2023-02-27T06:45:32+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Packet_Sniffing</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Network_Security</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Hypervisors</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Virtualization</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Computer_Forensics</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Cloud_Computing</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Automation</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Network_Monitoring</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/_Cryptography</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Data_Compression</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Wireless_Networking</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Load_Balancing</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Tree_Structures</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Graphical_Processing_Units</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Cable_Management</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Data_Mining</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flozable.com/category/Radix_Sort</loc>
+    <lastmod>2023-03-02T06:45:32+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>

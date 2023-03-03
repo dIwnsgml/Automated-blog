@@ -1,11 +1,9 @@
 const like_btn = document.querySelector("#btn_likes");
 
 like_btn.addEventListener('click', (event) => {
-  console.log(like_btn.innerHTML.split("Like")[1]);
   like_btn.innerHTML = '<i class="fa-regular fa-heart"></i>'+ " Like "+(parseInt(like_btn.innerHTML.split("Like")[1]) + 1);
   fetch(window.location.pathname+"/like", {method: 'POST'})
   .then(function(response) {
-    console.log(response, Response)
     if(response.ok) {
       console.log('Like was recorded');
       return;
@@ -13,7 +11,6 @@ like_btn.addEventListener('click', (event) => {
     throw new Error('Request failed.');
   })
   .catch(function(error) {
-    console.log(error);
   });
 });
 
@@ -21,11 +18,9 @@ like_btn.addEventListener('click', (event) => {
   const path = window.location.pathname;
   const category = path.split("/")[2];
   const title = path.split("/")[3];
-  console.log(category)
   const response = await fetch(`/article/getArticle/${category}/${title}`, {method: 'POST'});
   const article = await response.json();
   
-  console.log(article)
   const text_area = document.querySelector(".text");
   text_area.innerHTML = article.text;
 
@@ -40,7 +35,6 @@ like_btn.addEventListener('click', (event) => {
   //related aticles
   const response2 = await fetch(`/article/getRelatedArticles/${category}`, {method: 'POST'});
   const related_articles = await response2.json();
-  console.log(related_articles.length)
   const articles_wrapper = document.querySelector(".articles-wrapper");
   for(let i = 0; i < related_articles.length; i++){
     articles_wrapper.innerHTML += `<div class='related_articles' id=${related_articles[i].post_id}>
