@@ -64,7 +64,12 @@ Router.post('/getArticlesforCategory/:category', async (req, res) => {
 
   const category = req.params.category;
 
-  let articles = await connection.query("SELECT * FROM ??", [category]);
+  let articles
+  try {
+    articles = await connection.query("SELECT * FROM ??", [category]);
+  } catch(err) {
+    console.log(err)
+  }
   connection.release();
   res.send(articles);
 })
