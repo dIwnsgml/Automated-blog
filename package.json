@@ -31,7 +31,7 @@
     "mailgun.js": "^8.1.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
     "openai": "^3.1.0",
     "promise-mysql": "^5.2.0",
     "socket.io": "^4.5.4"
