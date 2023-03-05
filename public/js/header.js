@@ -52,9 +52,9 @@ const header = document.querySelector("header")
 
 window.onscroll = function(e) {
   if(window.pageYOffset != 0) {
-    header.style = "background-color: #fff;"
+    header.style = "background-color: #e7e5de; top: 0px;"
   } else {
-    header.style = "background-color: transparent; border: none;"
+    header.style = "background-color: transparent; border: none; top: -100px;"
   }
 }
 

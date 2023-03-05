@@ -43,11 +43,10 @@ html::-webkit-scrollbar-thumb
 }
 
 header {
+  transition: background-color 0.3s, top 1s;
   color: #000;
-  background-color: #fff;
-  border-bottom: solid 1px#808080;
+  background-color: #e7e5de;
 }
-
 a, h1, h2, h3, h4 ,h5, h6, p {
   font-family: 'Montserrat', sans-serif!important;
   box-sizing:border-box;
