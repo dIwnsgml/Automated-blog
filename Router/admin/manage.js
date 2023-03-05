@@ -17,7 +17,6 @@ Router.get('/article', async(req, res) => {
     res.redirect('/');
     return 0
   }
-  const connection = await (await pool).getConnection()
   if(req.session.loggedin){
     res.render("admin")
   } else {
@@ -42,12 +41,12 @@ Router.get('/category', async(req, res) => {
       categories = categories.concat(" ",rows[index].name);
       index += 1;
     }
-    connection.release();
 
     res.render('admin/manage/category', {
       categories: rows,
     });
   })
+  connection.release();
 })
 
 Router.post('/category/create', async(req, res) => {
