@@ -42,6 +42,7 @@ Router.get('/category', async(req, res) => {
       categories = categories.concat(" ",rows[index].name);
       index += 1;
     }
+    connection.release();
 
     res.render('admin/manage/category', {
       categories: rows,
@@ -54,10 +55,10 @@ Router.post('/category/create', async(req, res) => {
     res.redirect('/');
     return 0
   }
-  const connection = await (await pool).getConnection()
   console.log(req.session.loggedin)
 
   setInterval((async() => {
+    const connection = await (await pool).getConnection()
     /* prompt should generate exept lang stored in database */
     connection.query('SELECT * FROM category', (err, rows) => {
       var categories = '';
@@ -185,6 +186,7 @@ Router.post('/category/create', async(req, res) => {
         }
       })();
     });
+    connection.release()
   }), 1000 * 60 * 60 * 24 * 1)
 
 

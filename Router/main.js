@@ -14,7 +14,8 @@ Router.post("/subscribe/:email", async (req, res) => {
   const connection = await (await pool).getConnection();
   const email = req.params.email;
   console.log(email)
-  let subscibe = await connection.query("INSERT INTO subscribers set ?", [{email: email}])
+  let subscibe = await connection.query("INSERT INTO subscribers set ?", [{email: email}]);
+  connection.release();
 })
 
 Router.post('/sort/:category', async (req, res) => {
@@ -23,7 +24,6 @@ Router.post('/sort/:category', async (req, res) => {
   console.log(category)
   let articles = [];
   let categories = await connection.query("SELECT * FROM category");
-  connection.release();
   if(category == "all"){
     for(let i = 0; i < categories.length; i++){
       //remove category table
@@ -37,7 +37,7 @@ Router.post('/sort/:category', async (req, res) => {
   } else {
     articles[0] = await connection.query("SELECT * FROM ??", [category]);
   }
-
+  connection.release();
   res.send({article: articles});
 })
 
