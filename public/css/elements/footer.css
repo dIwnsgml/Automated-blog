@@ -1,3 +1,4 @@
+
 .section {
   width: 100vw;
 }
@@ -5,18 +6,10 @@ footer {
   position: relative;
   width: 100%;
   background-color: rgb(236, 209, 170);;
-  color: white;
+  color: #000;
   text-align: center;
   margin-top: 100px;
   height: 500px;
-}
-
-footer a:visited{
-  color: #fff;
-}
-
-footer a{
-  color: #fff;
 }
 
 footer > .inner{
@@ -32,29 +25,39 @@ footer > .inner > div{
   text-align: left;
 }
 
-footer > .inner > div h4{
-  margin-bottom: 30px;
-  font-size: 30px;
-}
-
-/* footer > .inner > .categories {
-} */
-footer > .inner > .categories ul li{
+footer > .inner > div a {
   font-size: 20px;
 }
 
-footer > .inner > .github a{
+footer > .inner > div h4{
+  margin-bottom: 30px;
   font-size: 33px;
+  font-family: 'Tilt Warp', cursive !important;
+}
+
+footer > .inner > .categories {
+  width: max-content;
+}
+
+footer > .inner > .categories ul{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(15, auto);
+  max-height: 300px;
+}
+footer > .inner > .categories ul li{
+  padding-right: 40px;
+}
+
+footer > .inner > .categories ul li a{
+  white-space: nowrap;
 }
 
 footer .email-container {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
 }
 
 footer .email-content {

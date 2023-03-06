@@ -53,7 +53,7 @@ Router.post('/category/create', async(req, res) => {
     res.redirect('/');
     return 0
   }
-  res.sendStatus(200)
+  console.log(req.session.loggedin)
 
   setInterval((async() => {
     const connection = await (await pool).getConnection();
