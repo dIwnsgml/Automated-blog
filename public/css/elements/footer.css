@@ -51,6 +51,14 @@ footer > .inner > .categories ul li{
 
 footer > .inner > .categories ul li a{
   white-space: nowrap;
+  transition: text-decoration 1s;
+  text-decoration-color:#f6c6c6;
+}
+
+footer > .inner > .categories ul li a:hover{
+  text-decoration: underline;
+  text-decoration-color:#fa1682;
+  text-decoration-thickness: 5px;
 }
 
 footer .email-container {

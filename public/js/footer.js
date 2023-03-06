@@ -7,7 +7,7 @@
     footer_ul.appendChild(li);
     let a = document.createElement("a");
     a.setAttribute('href', `/category/${text[i].name}`);
-    a.innerText = text[i].name.replace(/_/, ' ');
+    a.innerText = text[i].name.replace(/_/g, ' ');
     li.appendChild(a)
   }
 })();
