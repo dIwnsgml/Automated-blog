@@ -5,10 +5,10 @@ const pool = mysql.createPool({
   user: info.database.user,
   password: info.database.password,
   database: info.database.name,
-  acquireTimeout : 10000,
+  acquireTimeout : 30000,
   connectTimeout : 10000,
   multipleStatements: true,
-  connectionLimit: 100,
+  connectionLimit: 5,
 });
 
 module.exports = pool;

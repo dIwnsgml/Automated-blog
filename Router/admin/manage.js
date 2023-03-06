@@ -36,7 +36,6 @@ Router.get('/category', async(req, res) => {
   connection.query('SELECT * FROM category', (err, rows) => {
     var categories = '';
     let index = 0;
-    console.log(rows)
     while(typeof rows[index] != 'undefined'){
       categories = categories.concat(" ",rows[index].name);
       index += 1;
@@ -54,10 +53,10 @@ Router.post('/category/create', async(req, res) => {
     res.redirect('/');
     return 0
   }
-  console.log(req.session.loggedin)
+  res.sendStatus(200)
 
   setInterval((async() => {
-    const connection = await (await pool).getConnection()
+    const connection = await (await pool).getConnection();
     /* prompt should generate exept lang stored in database */
     connection.query('SELECT * FROM category', (err, rows) => {
       var categories = '';
