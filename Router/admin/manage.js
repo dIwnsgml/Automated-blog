@@ -118,7 +118,7 @@ Router.post('/category/create', async(req, res) => {
         new_topics_arr.splice(0, 1);
 
         connection.query('INSERT INTO category SET ?', {name: new_category, field: field});
-        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(100), contents VARCHAR(100), text varchar(1000), img_url varchar(200), likes int(200) default 0, views int(200) default 0, path varchar(300), field varchar(100), status varchar(30) default 'no')`)
+        connection.query(`CREATE TABLE ${new_category} (post_id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(100), contents VARCHAR(300), text varchar(10000), img_url varchar(200), likes int(200) default 0, views int(200) default 0, path varchar(300), field varchar(100), status varchar(30) default 'no')`)
         let index = 0;
         while(typeof new_topics_arr[index] != 'undefined'){
           //write article

@@ -20,13 +20,15 @@ footer > .inner{
   justify-content: center;
 }
 
+footer .inner > div > ul > li {
+  list-style: none;
+  padding: 0px 50px 0px 0px;
+  font-size: 20px !important;
+}
+
 footer > .inner > div{
   margin: 100px 60px 0px 60px;
   text-align: left;
-}
-
-footer > .inner > div a {
-  font-size: 20px;
 }
 
 footer > .inner > div h4{
@@ -49,13 +51,13 @@ footer > .inner > .categories ul li{
   padding-right: 40px;
 }
 
-footer > .inner > .categories ul li a{
+footer > .inner > div ul li a{
   white-space: nowrap;
   transition: text-decoration 1s;
   text-decoration-color:#f6c6c6;
 }
 
-footer > .inner > .categories ul li a:hover{
+footer > .inner > div ul li a:hover{
   text-decoration: underline;
   text-decoration-color:#fa1682;
   text-decoration-thickness: 5px;
