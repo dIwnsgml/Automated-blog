@@ -97,11 +97,13 @@ options.forEach(option =>
   slider.appendChild(bar);
 
   const category_btn1 = document.querySelector(".slide-item-1");
-  const items = document.querySelectorAll(".items > ul > li");
   //category_input_1.setAttribute("checked", "true")
   category_btn1.addEventListener("click", () => {
+    let items = document.querySelectorAll(".items > ul > li");
+    console.log(items)
     for(let i = 0; i < items.length; i++){
-      items[i].style = "display: block;";
+      console.log(items[i])
+      items[i].style.display = "block";
     }
   });
 })();
