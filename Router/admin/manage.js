@@ -151,7 +151,7 @@ Router.post('/category/create', async(req, res) => {
               subject: 'New Category generated!',
               template:'category_notify',
               't:variables': JSON.stringify({ // be sure to stringify your payload
-                "category": new_category.replace(/_/, ' '),
+                "category": new_category.replace(/_/g, ' '),
                 "articles": [
                     {
                         "english": "test_english",
