@@ -23,17 +23,20 @@ footer > .inner{
 footer .inner > div > ul > li {
   list-style: none;
   padding: 0px 50px 0px 0px;
-  font-size: 20px !important;
+  font-size:1em !important;
+  flex-shrink: 3;
 }
 
 footer > .inner > div{
   margin: 100px 60px 0px 60px;
   text-align: left;
+  flex-shrink: 10;
+  max-width: 17vw;
 }
 
 footer > .inner > div h4{
-  margin-bottom: 30px;
-  font-size: 33px;
+  margin-bottom: 1em;
+  font-size: 2em;
   font-family: 'Tilt Warp', cursive !important;
 }
 
@@ -45,7 +48,7 @@ footer > .inner > .categories ul{
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(15, auto);
-  max-height: 300px;
+  max-height: 50vh;
 }
 footer > .inner > .categories ul li{
   padding-right: 40px;
