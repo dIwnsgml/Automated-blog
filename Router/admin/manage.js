@@ -73,7 +73,7 @@ Router.post('/category/create', async(req, res) => {
       const openai = new OpenAIApi(configuration);
       
       try {
-        const fields = ['software', 'hardware', 'algorithm', 'programming language', 'data structure', 'computer architectre', 'networking'];
+        const fields = ['software', 'hardware', 'algorithm', 'programming language', 'data structure', 'computer architecture', 'networking'];
         let field = fields[Math.floor(Math.random() * (fields.length))];
         console.log(field);
 
