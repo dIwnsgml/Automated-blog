@@ -416,7 +416,11 @@ a:visited {
   margin: 30px 0px 0px 30px;
   font-weight: bolder;
   text-align: left;
-  height: 38px;
+  padding: 0px;
+}
+
+.guideline .items .topic h3 {
+  margin: 0px;
   padding: 0px;
 }
 

@@ -13,7 +13,7 @@ html {
 
 html::-webkit-scrollbar-track
 {
-	border: 1px solid rgb(126, 125, 125);
+	/* border: 1px solid rgb(126, 125, 125); */
 	background-color: #F5F5F5;
 }
 
