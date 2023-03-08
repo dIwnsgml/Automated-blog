@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FLOZABLE | <%= category.replace(/_/, ' ')%></title>
+  <%- include("./elements/head");%>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/category.css">
+  <script defer src = "../../js/sort.js"></script>
+  <script defer src = "../../js/header.js"></script>
+  <script defer src = "../../js/footer.js"></script>
+  <script defer src = "../../js/category.js"></script>
+</head>
+<body>
+  <%- include("./elements/header");%>
+  <div class="main">
+    <div class="section">
+      <div class="inner">
+        <div class="guideline">
+          <div class="title">
+            <h2><%= category.replace(/_/g, " ")%></h2>
+          </div>
+          <div class="sort">
+            <button id = "sort_btn">Sort</button>
+            <div class = "sort-opt">
+              <input type="radio" id="sortChoice1" name="sort" />
+              <label for="sortChoice1">By views</label>
+        
+              <input type="radio" id="sortChoice2" name="sort" />
+              <label for="sortChoice2">By likes</label>
+        
+              <input type="radio" id="sortChoice3" name="sort" checked/>
+              <label for="sortChoice3">By category</label>
+            </div>
+          </div>
+          <div class="items"class="scrollbar" id="style-7" >
+            <ul class = "articles_wrapper">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <%- include("./elements/footer");%>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
