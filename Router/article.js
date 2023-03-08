@@ -9,6 +9,8 @@ Router.post('/getArticle/:category/:title', async(req, res) => {
   console.log(category, 'sdfff', title)
   const connection = await (await pool).getConnection();
   const article = await connection.query("SELECT * FROM ?? WHERE title = ?", [category, title]);
+  connection.query("UPDATE ?? set views=views+1 WHERE title = ?", [category, title]);
+  connection.query("UPDATE category set views=views+1 WHERE name = ?", [category]);
   connection.release();
   res.send(article[0]);
 })
