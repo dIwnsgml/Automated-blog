@@ -175,8 +175,8 @@ a:visited {
 }
 
 .main .section .inner {
-  width: 70vw;
-  transform: translate(15vw);
+  width: 80vw;
+  transform: translate(10vw);
   position: relative;
 }
 
@@ -565,6 +565,12 @@ p.day {
 }
 
 
-@media (max-width: 700px) {
-
+@media (max-width: 500px) {
+  .main .top .text .first{
+    font-size: 35px;
+  }
+  
+  .main .top .text .second{
+    font-size: 30px;
+  }
 }

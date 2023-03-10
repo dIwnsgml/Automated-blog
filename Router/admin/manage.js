@@ -11,6 +11,7 @@ const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(formData);
 const client = mailgun.client({username: 'admin', key: API_KEY});
 const conn = require('../../model/db');
+const fs = require("fs")
 
 Router.get('/article', async(req, res) => {
   if(req.session.loggedin != true){
