@@ -41,13 +41,6 @@ html::-webkit-scrollbar-thumb
 									   color-stop(0.86, rgb(28,58,148)));
 }
 
-header {
-  transition: background-color 0.3s, top 0.5s;
-  color: #000;
-  background-color: #e7e5de;
-  z-index: 2;
-}
-
 a, h1, h2, h3, h4 ,h5, h6, p, a:visited {
   font-family: 'Tilt Warp', cursive;
   box-sizing:border-box;
@@ -61,6 +54,10 @@ header {
   height: 90px;
   z-index: 2;
  /*  background-color: #D13639; */
+  transition: background-color 0.2s, top 0.3s;
+  color: #000;
+  background-color: #e7e5de;
+  z-index: 2;
 }
 .modal, .modal-2, .mobile {
   display: none;
@@ -326,7 +323,7 @@ border-color: #000;
     position: relative;
   }
   header .inner > ul > li:nth-child(1) img{
-    transition: filter 2s;
+    transition: filter 0.3s;
   }
   header .inner > ul > li:nth-last-child(2) {
     padding: 30px !important;
