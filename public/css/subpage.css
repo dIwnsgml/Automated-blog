@@ -1,5 +1,6 @@
 @import url("elements/footer.css");
 @import url("elements/header.css");
+@import url("elements/modal.css");
 
 @keyframes tright {
   from {

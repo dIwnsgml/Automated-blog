@@ -147,7 +147,7 @@ header > .inner > ul > li .title i{
   margin-left: 10px
 }
 
-header > .inner > ul > li:nth-last-child(2){
+header > .inner > ul > li:nth-child(3){
   margin-top: 10px;
 }
 
@@ -201,7 +201,7 @@ header > .inner > ul > li .item > ul > li h3 {
 }
 
 
-header > .inner > ul > li:hover .item {
+header > .inner > ul > li:not(:nth-last-child(2)):hover .item {
   display: block;
 }
 
@@ -288,6 +288,20 @@ border-color: #000;
 }
 
 @media (max-width: 500px) {
+  @keyframes x1 {
+    100% {
+      transform: rotate(-45deg);
+      background-color: #fff;
+    }
+  }
+
+  @keyframes x2 {
+    100% {
+      transform: rotate(45deg);
+      margin-top: 0px;
+      background-color: #fff;
+    }
+  }
   .pc {
     display: none;
   }
@@ -307,11 +321,49 @@ border-color: #000;
   }
   header .inner > ul > li:nth-child(1) {
     padding-top: 13px;
+    z-index: 3;
+    position: relative;
   }
-  header .inner > ul > li:nth-child(2) {
-    padding-top: 30px;
+  header .inner > ul > li:nth-child(1) img{
+    transition: filter 2s;
   }
-  header .inner > ul > li:nth-last-child(1) {
-    padding: 30px;
+  header .inner > ul > li:nth-last-child(2) {
+    padding: 30px !important;
+    margin-right: 30px;
+    float: right;
+  }
+
+  header .inner > ul > li:nth-last-child(2) .title .btn .l1{
+    position: absolute;
+    z-index: 3;
+    padding: 0px;
+    margin: 0px;
+    width: 40px;
+    height: 4px;
+    background-color: #74ccdf;
+    border-radius: 3px;
+    display: block;
+  }
+  header .inner > ul > li:nth-last-child(2) .title .btn .l2{
+    position: absolute;
+    z-index: 3;
+    padding: 0px;
+    margin: 0px;
+    width: 40px;
+    height: 4px;
+    background-color: #fa1682;
+    margin-top: 10px;
+    border-radius: 3px;
+    display: block;
+  }
+  header .inner > ul > li:nth-last-child(2):hover .title .btn .l1{
+    /* animation: x1 1s 0.3s forwards; */
+  }
+  header .inner > ul > li:nth-last-child(2):hover .title .btn .l2{
+    /* animation: x2 1s 0.3s forwards; */
+  }
+
+  header .inner > ul:has(> li:nth-last-child(2):hover) img{
+    /* filter: invert(100%); */
   }
 }

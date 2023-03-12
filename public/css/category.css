@@ -1,5 +1,6 @@
 @import url("elements/footer.css");
 @import url("elements/header.css");
+@import url("elements/modal.css");
 
 .main .section {
   top: 0px;

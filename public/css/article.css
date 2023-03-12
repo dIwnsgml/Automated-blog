@@ -1,5 +1,6 @@
 @import url("elements/footer.css");
 @import url("elements/header.css");
+@import url("elements/modal.css");
 
 .main {
   position: absolute;
@@ -15,11 +16,6 @@ a:visited {
 
 .clear{
   clear: both;
-}
-
-:root {
-  --bar_width: 10%;
-
 }
 
 .main > .inner {
@@ -68,6 +64,15 @@ a:visited {
   font-family: 'Montserrat', sans-serif!important;
   list-style:square;
   line-height: 25px;
+}
+
+.main .article {
+  font-family: 'Tilt Warp', cursive;
+}
+
+.main > .inner {
+  width: 90vw;
+  margin-left: 5vw;
 }
 
 pre, code {
