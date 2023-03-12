@@ -56,9 +56,9 @@ console.log(mobile_modal_btn)
 mobile_modal_btn.addEventListener('click', (event) => {
   if(modal_state == 0 && modal_ava){
     modal_ava = false;
-    modal.style = "animation: modal-open 0.5s 0s forwards;";
-    x1.style = "animation: x1 0.5s 0s forwards;";
-    x2.style = "animation: x2 0.5s 0s forwards;";
+    modal.style = "animation: modal-open 0.3s 0s forwards;";
+    x1.style = "animation: x1 0.3s 0s forwards;";
+    x2.style = "animation: x2 0.3s 0s forwards;";
     main_img.style = "filter: invert(100%);";
     modal_state = 1;
     console.log('t')
@@ -70,12 +70,12 @@ mobile_modal_btn.addEventListener('click', (event) => {
       x1.style = "transform: rotate(-45deg);background-color: #fff;";
       x2.style = "transform: rotate(45deg);background-color: #fff; margin-top: 0px;";
       modal_ava = true;
-    }, 500)
+    }, 300)
   } else if(modal_state == 1 && modal_ava) {
     modal_ava = false
-    modal.style = "animation: modal-open 0.5s 0s reverse;";
-    x1.style = "animation: x1 0.5s 0s reverse;";
-    x2.style = "animation: x2 0.5s 0s reverse;";
+    modal.style = "animation: modal-open 0.3s 0s reverse;";
+    x1.style = "animation: x1 0.3s 0s reverse;";
+    x2.style = "animation: x2 0.3s 0s reverse;";
     main_img.style = "filter: invert(0%);";
     modal_state = 0;
     console.log("c")
@@ -87,7 +87,7 @@ mobile_modal_btn.addEventListener('click', (event) => {
       x1.style = "transform: rotate(0deg);background-color: #74ccdf;";
       x2.style = "transform: rotate(0deg);background-color: #fa1682; margin-top: 10px;";
       modal_ava = true;
-    }, 500)
+    }, 300)
   }
 })
 
@@ -96,11 +96,12 @@ mobile_modal_btn.addEventListener('click', (event) => {
 const header = document.querySelector("header")
 
 window.onscroll = function(e) {
-  if(window.pageYOffset != 0) {
+  if(this.oldScroll > this.scrollY) {
     header.style = "background-color: #e7e5de; top: 0px;"
   } else {
     header.style = "background-color: transparent; border: none; top: -120px;"
   }
+  this.oldScroll = this.scrollY;
 }
 
 search_bar.addEventListener('focus', (event) => {
