@@ -36,14 +36,54 @@
 
 const search_bar = document.querySelector(".input-search")
 const search_btn = document.querySelector(".btn-search")
-
+const mobile_modal_btn = document.querySelector("#modal-btn .btn");
+const modal = document.querySelector("#modal-btn .modal");
+const x1 = document.querySelector("#modal-btn .l1");
+const x2 = document.querySelector("#modal-btn .l2");
+const main_img = document.querySelector("header #btn-logo img");
 
 search_bar.addEventListener('focus', (event) => {
   search_btn.style.color = "#0000ff"
-})
+});
 
 search_bar.addEventListener('focusout', (event) => {
   search_btn.style.color = "#fff"
+});
+
+let modal_state = 0;
+console.log(mobile_modal_btn)
+mobile_modal_btn.addEventListener('click', (event) => {
+  if(modal_state == 0 ){
+    modal.style = "animation: modal-open 1s 0s forwards;";
+    x1.style = "animation: x1 1s 0s forwards;";
+    x2.style = "animation: x2 1s 0s forwards;";
+    main_img.style = "filter: invert(100%);";
+    modal_state = 1;
+    console.log('t')
+    setTimeout(()=> {
+      modal.style.animation = null;
+      modal.style = "left: 0px;";
+      x1.style.animation = null;
+      x2.style.animation = null;
+      x1.style = "transform: rotate(-45deg);background-color: #fff;";
+      x2.style = "transform: rotate(45deg);background-color: #fff; margin-top: 0px;";
+    }, 1000)
+  } else {
+    modal.style = "animation: modal-open 1s 0s reverse;";
+    x1.style = "animation: x1 1s 0s reverse;";
+    x2.style = "animation: x2 1s 0s reverse;";
+    main_img.style = "filter: invert(0%);";
+    modal_state = 0;
+    console.log("c")
+    setTimeout(()=> {
+      modal.style.animation = null;
+      modal.style = "left: 100vw;";
+      x1.style.animation = null;
+      x2.style.animation = null;
+      x1.style = "transform: rotate(0deg);background-color: #74ccdf;";
+      x2.style = "transform: rotate(0deg);background-color: #fa1682; margin-top: 10px;";
+    }, 1000)
+  }
 })
 
 //header change
@@ -54,7 +94,7 @@ window.onscroll = function(e) {
   if(window.pageYOffset != 0) {
     header.style = "background-color: #e7e5de; top: 0px;"
   } else {
-    header.style = "background-color: transparent; border: none; top: -100px;"
+    header.style = "background-color: transparent; border: none; top: -120px;"
   }
 }
 

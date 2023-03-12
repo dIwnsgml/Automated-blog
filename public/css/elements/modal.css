@@ -1,0 +1,44 @@
+@keyframes modal-open {
+  0%{
+    left: 100vw;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes modal-close {
+  0%{
+    left: 0px;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+
+.modal {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 100vw;
+  top: 0px;
+  z-index: 2;
+  background-color: #d7ae5c;
+}
+
+.modal-inner {
+  margin-top: 100px;
+  width: 80vw;
+  margin-left: 10vw;
+}
+header > .inner > ul > li:nth-last-child(2):hover .modal {
+  display: block;
+  animation-duration: 2s;
+  /* animation: modal 1s 0.3s forwards; */
+}
+
+.modal .header-list ul li a{
+  color: #fff;
+  font-size: 40px;
+}
