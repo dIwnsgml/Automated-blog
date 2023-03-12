@@ -7,3 +7,7 @@
   position: absolute;
   height:fit-content;
 }
+
+.guideline .title {
+  margin-bottom: 40px;
+}

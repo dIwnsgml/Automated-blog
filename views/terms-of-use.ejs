@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <%- include("./elements/head");%>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+  <script defer src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script> -->
   <link rel="stylesheet" href="css/subpage.css">
-  <script defer src = "js/subpage.js"></script>
+  <!-- <script defer src = "js/subpage.js"></script> -->
   <script defer src = "js/header.js"></script>
   <script defer src = "js/footer.js"></script>
   <title>FLOZABLE | About Us</title>
@@ -11,6 +13,73 @@
 <body>
   <%- include("./elements/header");%>
   <div class="main">
+    <div class="swiper" id = "pc">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="./img/ai_writing.png" alt="">
+          <div class="top">
+            <div class="blur">
+              <div class="text">
+                <div class="first">
+                  <p>Our mission is to provide high-quality and engaging programming resources to learners of all levels, empowering them to build their skills, knowledge, and confidence in the world of technology.</p>
+                </div>
+                <!-- <div class="second">
+                  <p>Our mission is to provide high-quality and engaging programming resources to learners of all levels, empowering them to build their skills, knowledge, and confidence in the world of technology.</p>
+                </div> -->
+                <!-- <div class="bottom">
+                  <button>Join for Free</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="swiper-slide">
+          <img src="./img/ai_writing.png" alt="">
+          <div class="top">
+            <div class="blur">
+              <div class="text">
+                <div class="first">
+                  <p>Hello World !</p>
+                </div>
+                <div class="second">
+                  <p>100% Automated CS blog <img src="./img/floz.jpg" alt=""> <em>runned by</em> <img src="./img/floz.jpg" alt=""><em>Chat-GPT!</em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="swiper-slide">
+          <img src="./img/slider/logo.png" alt="?" />
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/slider/logo2.png" alt="?" />
+        </div> -->
+      </div>
+      <div class="swiper-pagination"></div>
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div> -->
+    </div>
+    <div class="section">
+      <div class="g-top">
+        <div class="inner">
+          <div class="title">
+            <h2>Terms and Conditions</h2>
+          </div>
+          <div class="explanation">
+            <p>FLOZZBLE websites ("Websites") and mobile applications ("Apps") and related services (together with the Websites, the "Service") are operated by FLOZABLE.
+
+              Access and use of the Service is subject to the following Terms and Conditions of Service ("Terms and Conditions"). By accessing or using any part of the Service, you represent that you have read, understood, and agree to be bound by these Terms and Conditions including any future modifications. If you do not agree to abide by these Terms and Conditions, you are not authorized to use, access or participate in the Service.</p>
+            <!-- <a href="/category/all">View all categories<i class="fa-solid fa-arrow-right"></i></a> -->
+          </div>
+        </div>
+      </div>
+      <footer>
+        <%- include("./elements/footer");%>
+      </footer>
+    </div>
+  </div>
+  <!-- <div class="main">
     <div class="swiper-slide">
       <img src="./img/ai_writing.png" alt="">
       <div class="top">
@@ -19,9 +88,6 @@
             <div class="first">
               <p>Our mission is to provide high-quality and engaging programming resources to learners of all levels, empowering them to build their skills, knowledge, and confidence in the world of technology.</p>
             </div>
-            <!-- <div class="bottom">
-              <button>Join for Free</button>
-            </div> -->
           </div>
         </div>
       </div>
@@ -33,6 +99,6 @@
     <footer>
       <%- include("./elements/footer");%>
     </footer>
-  </div>
+  </div> -->
 </body>
 </html>

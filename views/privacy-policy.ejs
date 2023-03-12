@@ -2,30 +2,68 @@
 <html lang="en">
 <head>
   <%- include("./elements/head");%>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+  <script defer src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script> -->
   <link rel="stylesheet" href="css/subpage.css">
-  <script defer src = "js/subpage.js"></script>
+  <!-- <script defer src = "js/subpage.js"></script> -->
   <script defer src = "js/header.js"></script>
   <script defer src = "js/footer.js"></script>
-  <title>FLOZABLE | Privacy Policy</title>
+  <title>FLOZABLE | About Us</title>
 </head>
 <body>
   <%- include("./elements/header");%>
   <div class="main">
-    <div class="explanation">
-      <h2>Privacy Policy</h2>
-      <h3>1. General</h3>
-      <p>At Flozable.blog, we value your privacy and have created this Privacy Policy to inform you about how we collect, use, and share your personal data.
+    <div class="swiper" id = "pc">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="./img/ai_writing.png" alt="">
+          <div class="top">
+            <div class="blur">
+              <div class="text">
+                <div class="first">
+                  <p>Our mission is to provide high-quality and engaging programming resources to learners of all levels, empowering them to build their skills, knowledge, and confidence in the world of technology.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="section">
+      <div class="g-top">
+        <div class="inner">
+          <div class="title">
+            <h2>Privacy Policy</h2>
+          </div>
+          <div class="explanation">
+            <ul>
+              <li>
+                <div class="list-title"><h3>1. General</h3></div>
+                <div class="text">
+                  <p>At Flozable.blog, we value your privacy and have created this Privacy Policy to inform you about how we collect, use, and share your personal data.
 
-        This Privacy Policy ("Policy") outlines the personal data received by Flozable.blog ("we," "us," or "our") and how we process it, as well as your rights and responsibilities concerning your personal data. Flozable.blog is owned and operated by Flozable, and we act as the data controller for the purposes of the General Data Protection Regulation ("GDPR") and any applicable local legislation ("Data Protection Laws").
-        
-        By using or accessing our Service, you agree to the terms of this Privacy Policy. If you have any questions or concerns about our policy, please contact us at <a href="https://flozable.com/contact">contact</a>. Any capitalized terms not defined in this Policy are defined in our Terms of Use, which can be found at <a href="https://flozable.com/terms-of-use">terms of use</a>.</p>
-        <h3>2. Cookies</h3>
-        <p>When you enter the Website, we collect your browser type and your IP address (a unique address that identifies your computer on the Internet). When you use our Apps, we collect your device type, your device ID, and your IP address.
+                    This Privacy Policy ("Policy") outlines the personal data received by Flozable.blog ("we," "us," or "our") and how we process it, as well as your rights and responsibilities concerning your personal data. Flozable.blog is owned and operated by Flozable, and we act as the data controller for the purposes of the General Data Protection Regulation ("GDPR") and any applicable local legislation ("Data Protection Laws").
+                    
+                    By using or accessing our Service, you agree to the terms of this Privacy Policy. If you have any questions or concerns about our policy, please contact us at <a href="https://flozable.com/contact">contact</a>. Any capitalized terms not defined in this Policy are defined in our Terms of Use, which can be found at <a href="https://flozable.com/terms-of-use">terms of use</a>.</p>
+                </div>
+              </li>
+              <li>
+                <div class="list-title"><h3>2. Cookies</h3></div>
+                <div class="text">
+                  <p>When you enter the Website, we collect your browser type and your IP address (a unique address that identifies your computer on the Internet). When you use our Apps, we collect your device type, your device ID, and your IP address.
 
-          In addition, we store certain information from your browser using "cookies." A cookie is a piece of data stored on the user's computer tied to information about the user. We use session ID cookies to confirm that users are logged in. If you do not want information collected through the use of cookies, there is a simple procedure in most browsers that allows you to deny or accept the cookie feature; however, you should note that cookies may be necessary to provide you certain features available on the Websites (e.g., customized delivery of information).</p>
+                    In addition, we store certain information from your browser using "cookies." A cookie is a piece of data stored on the user's computer tied to information about the user. We use session ID cookies to confirm that users are logged in. If you do not want information collected through the use of cookies, there is a simple procedure in most browsers that allows you to deny or accept the cookie feature; however, you should note that cookies may be necessary to provide you certain features available on the Websites (e.g., customized delivery of information).</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <%- include("./elements/footer");%>
+      </footer>
+    </div>
   </div>
-  <footer>
-    <%- include("./elements/footer");%>
-  </footer>
 </body>
 </html>
