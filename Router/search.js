@@ -1,8 +1,9 @@
 const express = require("express");
 const Router = express.Router(); 
 
-Router.post("/", async(req, res) => {
-  const query = req.body.query;
+Router.get("/:name", async(req, res) => {
+  const query = req.params.name;
+  console.log(query)
   res.render('search', {query: query})
 })
 
